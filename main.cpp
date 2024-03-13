@@ -1,6 +1,5 @@
 #include <iostream>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
+#include "AllSDL.h"
 
 using namespace std;
 
@@ -12,6 +11,10 @@ SDL_Surface *gScreenSurface = NULL;
 
 // The image we will load and show on the screen
 SDL_Surface *gHelloWorld = NULL;
+
+const int SCREEN_WIDTH = 1280;
+const int SCREEN_HEIGHT = 640;
+const int SCREEN_BPP = 32;
 bool init()
 {
     // Initialization flag
@@ -26,7 +29,7 @@ bool init()
     else
     {
         // Create window
-        gWindow = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 474, 266, SDL_WINDOW_SHOWN);
+        gWindow = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1190, 1190, SDL_WINDOW_SHOWN);
         if (gWindow == NULL)
         {
             printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
@@ -48,10 +51,10 @@ bool loadMedia()
     bool success = true;
 
     // Load splash image
-    gHelloWorld = SDL_LoadBMP("Data/bg.bmp");
+    gHelloWorld = SDL_LoadBMP("Data/pika.bmp");
     if (gHelloWorld == NULL)
     {
-        printf("Unable to load image %s! SDL Error: %s\n", "Data/bg.bmp", SDL_GetError());
+        printf("Unable to load image %s! SDL Error: %s\n", "Data/pika.bmp", SDL_GetError());
         success = false;
     }
 
