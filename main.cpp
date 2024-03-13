@@ -1,55 +1,113 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include <SDL2/SDL_mixer.h>
-#include <SDL2/SDL_ttf.h>
-using std::cin;
-using std::cout;
 
-const int SCREEN_WIDTH = 1280;
-const int SCREEN_HEIGHT = 720;
+using namespace std;
 
-SDL_Window* gwindow = NULL;
-SDL_Surface* gScreenSurface = NULL;
-SDL_Surface* BackGround = NULL;
+// The window we'll be rendering to
+SDL_Window *gWindow = NULL;
 
-bool init() {
-    if (SDL_Init(SDL_INIT_VIDEO)<0) {
-        cout<<"SDL Could not Initialize, SDL Error:\n"<<SDL_GetError();
-        return false;
+// The surface contained by the window
+SDL_Surface *gScreenSurface = NULL;
+
+// The image we will load and show on the screen
+SDL_Surface *gHelloWorld = NULL;
+bool init()
+{
+    // Initialization flag
+    bool success = true;
+
+    // Initialize SDL
+    if (SDL_Init(SDL_INIT_VIDEO) < 0)
+    {
+        printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
+        success = false;
     }
-    else {
-        gwindow = SDL_CreateWindow("SDL Window", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
-        if (gwindow == NULL) {
-            cout<<"Window could not be created\nSDL Error:\n"<<SDL_GetError();
-            return false;
+    else
+    {
+        // Create window
+        gWindow = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 474, 266, SDL_WINDOW_SHOWN);
+        if (gWindow == NULL)
+        {
+            printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
+            success = false;
         }
-        else {
-            gScreenSurface = SDL_GetWindowSurface(gwindow);
-        }
-    }
-    return true;
-}
-
-bool loadmedia(const char path[], SDL_Surface*& Carry_Surface) {
-    Carry_Surface = SDL_LoadBMP(path);
-    return Carry_Surface != NULL;
-}
-
-void stay_window() {
-    SDL_Event e;
-    bool quit = false;
-    while(!quit) {
-        while (SDL_PollEvent(&e)) {
-            if (e.type == SDL_QUIT) {
-                quit = true;
-            } 
+        else
+        {
+            // Get window surface
+            gScreenSurface = SDL_GetWindowSurface(gWindow);
         }
     }
+
+    return success;
 }
-int main(int argc, char* args[]) {
-    if (init()) {
-        stay_window();
+
+bool loadMedia()
+{
+    // Loading success flag
+    bool success = true;
+
+    // Load splash image
+    gHelloWorld = SDL_LoadBMP("Data/bg.bmp");
+    if (gHelloWorld == NULL)
+    {
+        printf("Unable to load image %s! SDL Error: %s\n", "Data/bg.bmp", SDL_GetError());
+        success = false;
     }
+
+    return success;
+}
+
+void close()
+{
+    // Deallocate surface
+    SDL_FreeSurface(gHelloWorld);
+    gHelloWorld = NULL;
+
+    // Destroy window
+    SDL_DestroyWindow(gWindow);
+    gWindow = NULL;
+
+    // Quit SDL subsystems
+    SDL_Quit();
+}
+
+int main(int argc, char *args[])
+{
+    // Start up SDL and create window
+    if (!init())
+    {
+        printf("Failed to initialize!\n");
+    }
+    else
+    {
+        // Load media
+        if (!loadMedia())
+        {
+            printf("Failed to load media!\n");
+        }
+        else
+        {
+            // Apply the image
+            SDL_BlitSurface(gHelloWorld, NULL, gScreenSurface, NULL);
+            // Update the surface
+            SDL_UpdateWindowSurface(gWindow);
+            // Hack to get window to stay up
+            SDL_Event e;
+            bool quit = false;
+            while (quit == false)
+            {
+                while (SDL_PollEvent(&e))
+                {
+                    if (e.type == SDL_QUIT)
+                        quit = true;
+                }
+            }
+        }
+    }
+
+    // Free resources and close SDL
+    close();
+
     return 0;
 }
