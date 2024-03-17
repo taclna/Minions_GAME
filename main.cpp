@@ -1,9 +1,44 @@
+/*This source code copyrighted by Lazy Foo' Productions 2004-2024
+and may not be redistributed without written permission.*/
 
+// Using SDL, SDL_image, standard IO, and strings
 #include "ALL.h"
-using namespace std;
+
 // Screen dimension constants
 const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+const int SCREEN_HEIGHT = 640;
+
+// Texture wrapper class
+class LTexture
+{
+public:
+    // Initializes variables
+    LTexture();
+
+    // Deallocates memory
+    ~LTexture();
+
+    // Loads image at specified path
+    bool loadFromFile(std::string path);
+
+    // Deallocates texture
+    void free();
+
+    // Renders texture at given point
+    void render(int x, int y);
+
+    // Gets image dimensions
+    int getWidth();
+    int getHeight();
+
+private:
+    // The actual hardware texture
+    SDL_Texture *mTexture;
+
+    // Image dimensions
+    int mWidth;
+    int mHeight;
+};
 
 // Starts up SDL and creates window
 bool init();
@@ -14,17 +49,99 @@ bool loadMedia();
 // Frees media and shuts down SDL
 void close();
 
-// Loads individual image as texture
-SDL_Texture *loadTexture(std::string path);
-
 // The window we'll be rendering to
 SDL_Window *gWindow = NULL;
 
 // The window renderer
 SDL_Renderer *gRenderer = NULL;
 
-// Current displayed texture
-SDL_Texture *gTexture = NULL;
+// Scene textures
+LTexture gFooTexture;
+LTexture gBackgroundTexture;
+
+LTexture::LTexture()
+{
+    // Initialize
+    mTexture = NULL;
+    mWidth = 0;
+    mHeight = 0;
+}
+
+LTexture::~LTexture()
+{
+    // Deallocate
+    free();
+}
+
+bool LTexture::loadFromFile(std::string path)
+{
+    // Get rid of preexisting texture
+    free();
+
+    // The final texture
+    SDL_Texture *newTexture = NULL;
+
+    // Load image at specified path
+    SDL_Surface *loadedSurface = IMG_Load(path.c_str());
+    if (loadedSurface == NULL)
+    {
+        printf("Unable to load image %s! SDL_image Error: %s\n", path.c_str(), IMG_GetError());
+    }
+    else
+    {
+        // Color key image
+        SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0, 0xFF, 0xFF));
+
+        // Create texture from surface pixels
+        newTexture = SDL_CreateTextureFromSurface(gRenderer, loadedSurface);
+        if (newTexture == NULL)
+        {
+            printf("Unable to create texture from %s! SDL Error: %s\n", path.c_str(), SDL_GetError());
+        }
+        else
+        {
+            // Get image dimensions
+            mWidth = loadedSurface->w;
+            mHeight = loadedSurface->h;
+        }
+
+        // Get rid of old loaded surface
+        SDL_FreeSurface(loadedSurface);
+    }
+
+    // Return success
+    mTexture = newTexture;
+    return mTexture != NULL;
+}
+
+void LTexture::free()
+{
+    // Free texture if it exists
+    if (mTexture != NULL)
+    {
+        SDL_DestroyTexture(mTexture);
+        mTexture = NULL;
+        mWidth = 0;
+        mHeight = 0;
+    }
+}
+
+void LTexture::render(int x, int y)
+{
+    // Set rendering space and render to screen
+    SDL_Rect renderQuad = {x, y, mWidth, mHeight};
+    SDL_RenderCopy(gRenderer, mTexture, NULL, &renderQuad);
+}
+
+int LTexture::getWidth()
+{
+    return mWidth;
+}
+
+int LTexture::getHeight()
+{
+    return mHeight;
+}
 
 bool init()
 {
@@ -46,7 +163,7 @@ bool init()
         }
 
         // Create window
-        gWindow = SDL_CreateWindow("Minions", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+        gWindow = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
         if (gWindow == NULL)
         {
             printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
@@ -85,11 +202,17 @@ bool loadMedia()
     // Loading success flag
     bool success = true;
 
-    // Load PNG texture
-    gTexture = loadTexture("Data/tq.jpg");
-    if (gTexture == NULL)
+    // Load Foo' texture
+    if (!gFooTexture.loadFromFile("Data/foo.png"))
     {
-        printf("Failed to load texture image!\n");
+        printf("Failed to load Foo' texture image!\n");
+        success = false;
+    }
+
+    // Load background texture
+    if (!gBackgroundTexture.loadFromFile("Data/background.png"))
+    {
+        printf("Failed to load background texture image!\n");
         success = false;
     }
 
@@ -98,9 +221,9 @@ bool loadMedia()
 
 void close()
 {
-    // Free loaded image
-    SDL_DestroyTexture(gTexture);
-    gTexture = NULL;
+    // Free loaded images
+    gFooTexture.free();
+    gBackgroundTexture.free();
 
     // Destroy window
     SDL_DestroyRenderer(gRenderer);
@@ -111,33 +234,6 @@ void close()
     // Quit SDL subsystems
     IMG_Quit();
     SDL_Quit();
-}
-
-SDL_Texture *loadTexture(std::string path)
-{
-    // The final texture
-    SDL_Texture *newTexture = NULL;
-
-    // Load image at specified path
-    SDL_Surface *loadedSurface = IMG_Load(path.c_str());
-    if (loadedSurface == NULL)
-    {
-        printf("Unable to load image %s! SDL_image Error: %s\n", path.c_str(), IMG_GetError());
-    }
-    else
-    {
-        // Create texture from surface pixels
-        newTexture = SDL_CreateTextureFromSurface(gRenderer, loadedSurface);
-        if (newTexture == NULL)
-        {
-            printf("Unable to create texture from %s! SDL Error: %s\n", path.c_str(), SDL_GetError());
-        }
-
-        // Get rid of old loaded surface
-        SDL_FreeSurface(loadedSurface);
-    }
-
-    return newTexture;
 }
 
 int main(int argc, char *args[])
@@ -176,10 +272,13 @@ int main(int argc, char *args[])
                 }
 
                 // Clear screen
+                SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
                 SDL_RenderClear(gRenderer);
+                gFooTexture.render(0, 0);
+                // Render background texture to screen
+                gBackgroundTexture.render(0, 50);
 
-                // Render texture to screen
-                SDL_RenderCopy(gRenderer, gTexture, NULL, NULL);
+                // Render Foo' to the screen
 
                 // Update screen
                 SDL_RenderPresent(gRenderer);
