@@ -1,138 +1,177 @@
-/*This source code copyrighted by Lazy Foo' Productions 2004-2024
-and may not be redistributed without written permission.*/
-
-// Using SDL and standard IO
-#include "AllSDL.h"
 #include <iostream>
+#include "hangman.h"
 
-// Screen dimension constants
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+using std::cin;
+using std::domain_error;
+using std::ifstream;
+using std::string;
+using std::vector;
 
-// Starts up SDL and creates window
-bool init();
-
-// Loads media
-bool loadMedia();
-
-// Frees media and shuts down SDL
-void close();
-
-// The window we'll be rendering to
-SDL_Window *gWindow = NULL;
-
-// The surface contained by the window
-SDL_Surface *gScreenSurface = NULL;
-
-// The image we will load and show on the screen
-SDL_Surface *gXOut = NULL;
-
-bool init()
+/***
+    Args:
+        min (int): left margin of a range
+        max (int): right margin of a range
+    Returns:
+        number (int) : random number in range [min; max]
+***/
+int generateRandomNumber(const int min, const int max)
 {
-    // Initialization flag
-    bool success = true;
+    // TODO: Return a random integer number between min and max
+    return rand() % (max - min + 1) + min;
+}
 
-    // Initialize SDL
-    if (SDL_Init(SDL_INIT_VIDEO) < 0)
+vector<string> readWordListFromFile(const string &filePath)
+{
+    vector<string> wordList;
+    string word;
+    ifstream wordFile(filePath);
+    if (!wordFile.is_open())
     {
-        printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
-        success = false;
+        throw domain_error("Unable to open file");
+    }
+
+    // while ( getline (wordFile, word) ){  // Thong thuong doc tung line.
+    //  Chuong trinh nay cung chay.
+    while (wordFile >> word)
+    { // Nhung voi chuong trinh nay, doc tung word cung duoc
+      // Tuc ca 2 cach doc deu chay.
+        wordList.push_back(word);
+        // cout << word << '\n';
+    }
+    wordFile.close();
+
+    return wordList;
+}
+
+/***
+    Args:
+        ch (char): A character
+        word (string): a word
+    Returns:
+        result (bool) : the character ch is in the word or not.
+***/
+bool isCharInWord(const char ch, const string &word)
+{
+    // TODO: return true if ch is in word else return false
+    return word.find(ch) != string::npos;
+}
+
+/***
+    Args:
+        wordList (vector<string>): A list of words
+        index (int): an integer number
+    Returns:
+        answer (string) : the lowercase word is in the position index of wordList
+***/
+string chooseWordFromList(const vector<string> &wordList, int index)
+{
+    // TODO: Return a lowercase word in the index position of the vector wordList.
+    string answer;
+
+    answer = wordList[index];
+    for (int i = 0; i < answer.length(); i++)
+    {
+        answer[i] = tolower(answer[i]);
+    }
+    return answer;
+}
+
+/***
+    Args:
+        answerWord (string): a word that player needs to guess
+    Returns:
+        secretWord (string): answerWord in hidden form (form of ---)
+***/
+string generateHiddenCharacters(string answerWord)
+{
+    // TODO: Based on answerWord's length, generate hidden characters in form of "---"
+    string secretWord(answerWord.length(), '-');
+
+    return secretWord;
+}
+
+char getInputCharacter()
+{
+    char ch;
+    cin >> ch;
+    return tolower(ch);
+}
+
+/***
+    Args:
+        secretWord (string): secret word in hidden form
+        ch (char): a charater
+        word (string): the answer word
+    Returns:
+        void
+***/
+void updateSecretWord(string &secretWord, const char ch, const string &word)
+{
+    // TODO: Update the secret word if the character ch is in the answer word.
+    for (int i = 0; i < secretWord.length(); i++)
+    {
+        if (ch == word[i])
+            secretWord[i] = ch;
+    }
+}
+
+/***
+    Args:
+        ch (char): a character
+        chars (string): an array of characters
+    Returns:
+        void
+***/
+void updateEnteredChars(const char ch, string &chars)
+{
+    // TODO: append the character ch is in end of the text chars
+    chars = chars + ch + ' ';
+}
+
+/***
+    Args:
+        incorrectGuess (int): a number that store the number of player's wrong guess
+    Returns:
+        void
+***/
+void updateIncorrectGuess(int &incorrectGuess)
+{
+    // TODO: increase the value of incorrectGuess by 1
+    incorrectGuess++;
+}
+
+/***
+    Args:
+        ch (char): a character that player enter to console
+        word (string): answer word that play needs to guess
+        secretWord (string): answer word in hidden form
+        correctChars (string): a string that stores correct inputs of player
+        incorrectGuess (int): a number that stores the number of player's wrong guess
+        incorrectChars (string): a string that stores incorrect inputs of player
+    Returns:
+        void
+***/
+void processData(const char ch, const string &word,
+                 string &secretWord,
+                 string &correctChars,
+                 int &incorrectGuess, string &incorrectChars)
+{
+    /*** TODO
+        If ch in word:
+            update secretWord: call updateSecretWord() function
+            update correctChars: call updateEnteredChars() function
+        else:
+            update incorrectGuess: call updateIncorrectGuess() function
+            update incorrectChars: call updateEnteredChars() function
+    ***/
+    if (isCharInWord(ch, word))
+    {
+        updateSecretWord(secretWord, ch, word);
+        updateEnteredChars(ch, correctChars);
     }
     else
     {
-        // Create window
-        gWindow = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
-        if (gWindow == NULL)
-        {
-            printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
-            success = false;
-        }
-        else
-        {
-            // Get window surface
-            gScreenSurface = SDL_GetWindowSurface(gWindow);
-        }
+        updateIncorrectGuess(incorrectGuess);
+        updateEnteredChars(ch, incorrectChars);
     }
-
-    return success;
-}
-
-bool loadMedia()
-{
-    // Loading success flag
-    bool success = true;
-
-    // Load splash image
-    gXOut = SDL_LoadBMP("03_event_driven_programming/x.bmp");
-    if (gXOut == NULL)
-    {
-        printf("Unable to load image %s! SDL Error: %s\n", "03_event_driven_programming/x.bmp", SDL_GetError());
-        success = false;
-    }
-
-    return success;
-}
-
-void close()
-{
-    // Deallocate surface
-    SDL_FreeSurface(gXOut);
-    gXOut = NULL;
-
-    // Destroy window
-    SDL_DestroyWindow(gWindow);
-    gWindow = NULL;
-
-    // Quit SDL subsystems
-    SDL_Quit();
-}
-
-int main(int argc, char *args[])
-{
-    // Start up SDL and create window
-    if (!init())
-    {
-        printf("Failed to initialize!\n");
-    }
-    else
-    {
-        // Load media
-        if (!loadMedia())
-        {
-            printf("Failed to load media!\n");
-        }
-        else
-        {
-            // Main loop flag
-            bool quit = false;
-
-            // Event handler
-            SDL_Event e;
-
-            // While application is running
-            while (!quit)
-            {
-                // Handle events on queue
-                while (SDL_PollEvent(&e) != 0)
-                {
-                    // User requests quit
-                    if (e.type == SDL_QUIT)
-                    {
-                        quit = true;
-                    }
-                }
-
-                // Apply the image
-                SDL_BlitSurface(gXOut, NULL, gScreenSurface, NULL);
-
-                // Update the surface
-                SDL_UpdateWindowSurface(gWindow);
-            }
-        }
-    }
-
-    // Free resources and close SDL
-    close();
-
-    return 0;
 }
