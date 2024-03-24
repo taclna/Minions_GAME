@@ -5,8 +5,8 @@ and may not be redistributed without written permission.*/
 #include "ALL.h"
 
 // The dimensions of the level
-const int LEVEL_WIDTH = 1280;
-const int LEVEL_HEIGHT = 960;
+const int LEVEL_WIDTH = 1080;
+const int LEVEL_HEIGHT = 756;
 
 // Screen dimension constants
 const int SCREEN_WIDTH = 640;
@@ -413,14 +413,14 @@ bool loadMedia()
     bool success = true;
 
     // Load dot texture
-    if (!gDotTexture.loadFromFile("Data/dot.bmp"))
+    if (!gDotTexture.loadFromFile("Data/PrimitiveEra/minions/1.png"))
     {
         printf("Failed to load dot texture!\n");
         success = false;
     }
 
     // Load background texture
-    if (!gBGTexture.loadFromFile("Data/bg.png"))
+    if (!gBGTexture.loadFromFile("Data/PrimitiveEra/backgroud1080x756.jpg"))
     {
         printf("Failed to load background texture!\n");
         success = false;
