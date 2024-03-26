@@ -1,5 +1,20 @@
+#pragma once
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_mixer.h>
 #include <bits/stdc++.h>
+using namespace std;
+// The window we'll be rendering to
+
+const int LEVEL_WIDTH = 1080;
+const int LEVEL_HEIGHT = 756;
+
+// Screen dimension constants
+const int SCREEN_WIDTH = 640;
+const int SCREEN_HEIGHT = 480;
+
+extern SDL_Window *gWindow;
+
+// The window renderer
+extern SDL_Renderer *gRenderer;
