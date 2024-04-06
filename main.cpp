@@ -1,11 +1,8 @@
-/*This source code copyrighted by Lazy Foo' Productions 2004-2024
-and may not be redistributed without written permission.*/
-
-// Using SDL, SDL_image, standard IO, vectors, and strings
 #include "ALL.h"
 #include "Windows.h"
 #include "Texture.h"
 #include "Dot.h"
+#include "Threat.h"
 
 SDL_Rect gMinionsClips[4];
 SDL_RendererFlip flipMinion = SDL_FLIP_NONE;
@@ -91,7 +88,7 @@ void untilQuit()
 
         // Render background
         gBGTexture.render(0, 0, &camera);
-
+        gBlueFishTexture.render(952, 628);
         // Render objects
         SDL_Rect *currentClip = &gMinionsClips[frame / 4];
         dot.render(camera.x, camera.y, currentClip, flipMinion);

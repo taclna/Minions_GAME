@@ -44,6 +44,6 @@ private:
     int mWidth;
     int mHeight;
 };
-
 extern LTexture gDotTexture;
 extern LTexture gBGTexture;
+extern LTexture gBlueFishTexture;

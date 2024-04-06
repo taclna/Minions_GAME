@@ -11,8 +11,8 @@ const int LEVEL_WIDTH = 1080;
 const int LEVEL_HEIGHT = 756;
 
 // Screen dimension constants
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+const int SCREEN_WIDTH = 1080;
+const int SCREEN_HEIGHT = 756;
 
 extern SDL_Window *gWindow;
 

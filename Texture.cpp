@@ -2,6 +2,7 @@
 
 LTexture gDotTexture;
 LTexture gBGTexture;
+LTexture gBlueFishTexture;
 LTexture::LTexture()
 {
     // Initialize

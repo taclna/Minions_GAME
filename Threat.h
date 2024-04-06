@@ -1,22 +1,10 @@
 #pragma once
 #include "ALL.h"
 #include "Texture.h"
-class Dot
+class Threat
 {
 public:
-    // The dimensions of the dot
-    static const int DOT_WIDTH = 32;
-    static const int DOT_HEIGHT = 32;
-
-    // Maximum axis velocity of the dot
-    static const int DOT_VEL = 4;
-
-    // Initializes the variables
-    Dot();
-
-    // Takes key presses and adjusts the dot's velocity
-    void handleEvent(SDL_Event &e, SDL_RendererFlip &flip);
-
+    Threat();
     // Moves the dot
     void move();
 

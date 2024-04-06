@@ -70,6 +70,11 @@ bool loadMedia()
         success = false;
     }
 
+    if (!gBlueFishTexture.loadFromFile("Data/PrimitiveEra/blueFish.png"))
+    {
+        printf("Failed to load blue fish texture!\n");
+        success = false;
+    }
     // Load background texture
     if (!gBGTexture.loadFromFile("Data/PrimitiveEra/backgroud1080x756.jpg"))
     {
