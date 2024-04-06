@@ -15,13 +15,13 @@ public:
     Dot();
 
     // Takes key presses and adjusts the dot's velocity
-    void handleEvent(SDL_Event &e);
+    void handleEvent(SDL_Event &e, SDL_RendererFlip &flip);
 
     // Moves the dot
     void move();
 
     // Shows the dot on the screen relative to the camera
-    void render(int camX, int camY);
+    void render(int camX, int camY, SDL_Rect *clip = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE);
 
     // Position accessors
     int getPosX();

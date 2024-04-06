@@ -11,7 +11,7 @@ Dot::Dot()
     mVelY = 0;
 }
 
-void Dot::handleEvent(SDL_Event &e)
+void Dot::handleEvent(SDL_Event &e, SDL_RendererFlip &flip)
 {
     // If a key was pressed
     if (e.type == SDL_KEYDOWN && e.key.repeat == 0)
@@ -26,9 +26,11 @@ void Dot::handleEvent(SDL_Event &e)
             mVelY += DOT_VEL;
             break;
         case SDLK_LEFT:
+            flip = SDL_FLIP_HORIZONTAL;
             mVelX -= DOT_VEL;
             break;
         case SDLK_RIGHT:
+            flip = SDL_FLIP_NONE;
             mVelX += DOT_VEL;
             break;
         }
@@ -78,10 +80,10 @@ void Dot::move()
     }
 }
 
-void Dot::render(int camX, int camY)
+void Dot::render(int camX, int camY, SDL_Rect *clip, SDL_RendererFlip flip)
 {
     // Show the dot relative to the camera
-    gDotTexture.render(mPosX - camX, mPosY - camY);
+    gDotTexture.render(mPosX - camX, mPosY - camY, clip, 0.0, NULL, flip);
 }
 
 int Dot::getPosX()
