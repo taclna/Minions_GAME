@@ -4,6 +4,8 @@
 class Threat
 {
 public:
+    static const int BlueFish_WIDTH = 128;
+    static const int BlueFish_HETGHT = 128;
     Threat();
     // Moves the dot
     void move();
@@ -21,4 +23,7 @@ private:
 
     // The velocity of the dot
     int mVelX, mVelY;
+
+    bool left;
+    int cnt;
 };

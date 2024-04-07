@@ -64,7 +64,7 @@ bool loadMedia()
     bool success = true;
 
     // Load dot texture
-    if (!gDotTexture.loadFromFile("Data/PrimitiveEra/minions/minions.png"))
+    if (!gDotTexture.loadFromFile("Data/PrimitiveEra/minions.png"))
     {
         printf("Failed to load dot texture!\n");
         success = false;

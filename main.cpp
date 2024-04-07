@@ -37,6 +37,7 @@ void untilQuit()
 
     // The dot that will be moving around on the screen
     Dot dot;
+    Threat BlueFish;
 
     // The camera area
     SDL_Rect camera = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
@@ -82,13 +83,17 @@ void untilQuit()
             camera.y = LEVEL_HEIGHT - camera.h;
         }
 
+        // move BlueFish
+        BlueFish.move();
         // Clear screen
         SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
         SDL_RenderClear(gRenderer);
 
         // Render background
         gBGTexture.render(0, 0, &camera);
-        gBlueFishTexture.render(952, 628);
+        // Render BlueFish
+
+        BlueFish.render(BlueFish.getPosX(), BlueFish.getPosY());
         // Render objects
         SDL_Rect *currentClip = &gMinionsClips[frame / 4];
         dot.render(camera.x, camera.y, currentClip, flipMinion);
