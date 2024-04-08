@@ -5,9 +5,26 @@
 #include "Threat.h"
 #include "ThreatRedFish.h"
 
-int NUM_RED_FISH = 10;
-int NUM_BLUE_FISH = 5;
+int maxNUM_RED_FISH = 100;
+int maxNUM_BLUE_FISH = 100;
+int NUM_RED_FISH = 1;
+int NUM_BLUE_FISH = 1;
 
+void setNumThreat()
+{
+    if (SDL_GetTicks() >= Uint32(10000))
+    {
+        NUM_RED_FISH = 10;
+        NUM_BLUE_FISH = 5;
+        return;
+    }
+    if (SDL_GetTicks() >= 0)
+    {
+        NUM_RED_FISH = 4;
+        NUM_BLUE_FISH = 2;
+        return;
+    }
+}
 void untilQuit()
 {
     bool quit = false;
@@ -16,13 +33,14 @@ void untilQuit()
     SDL_Event e;
 
     Dot dot;
-    Threat BlueFish[NUM_BLUE_FISH];
-    ThreatRedFish RedFish[NUM_RED_FISH];
+    Threat BlueFish[maxNUM_BLUE_FISH];
+    ThreatRedFish RedFish[maxNUM_RED_FISH];
 
     // While application is running
     while (!quit)
     {
         // Handle events on queue
+        setNumThreat();
         while (SDL_PollEvent(&e) != 0)
         {
             // User requests quit
@@ -57,11 +75,8 @@ void untilQuit()
         // Render background
         gBGTexture.render(0, 0);
 
-        // Render BlueFish
-        for (int i = 0; i < NUM_BLUE_FISH; i++)
-        {
-            BlueFish[i].render(BlueFish[i].getPosX(), BlueFish[i].getPosY());
-        }
+        // Render minions
+        dot.render(dot.getPosX(), dot.getPosY());
 
         // Render RedFish
         for (int i = 0; i < NUM_RED_FISH; i++)
@@ -69,8 +84,11 @@ void untilQuit()
             RedFish[i].render(RedFish[i].getPosX(), RedFish[i].getPosY());
         }
 
-        // Render minions
-        dot.render(dot.getPosX(), dot.getPosY());
+        // Render BlueFish
+        for (int i = 0; i < NUM_BLUE_FISH; i++)
+        {
+            BlueFish[i].render(BlueFish[i].getPosX(), BlueFish[i].getPosY());
+        }
 
         // Update screen
         SDL_RenderPresent(gRenderer);
