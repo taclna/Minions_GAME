@@ -3,7 +3,7 @@ Threat::Threat()
 {
     // Initialize the offsets
     mPosX = rand() % 2 == 0 ? 0 - BlueFish_WIDTH : LEVEL_WIDTH;
-    if (mPosX == 0)
+    if (mPosX == 0 - BlueFish_WIDTH)
     {
         left = false;
     }
@@ -21,7 +21,7 @@ Threat::Threat()
 void Threat::move()
 {
     cnt++;
-    if (cnt == 400)
+    if (cnt == 450)
     {
         if (rand() % 2 == 0)
         {
@@ -41,7 +41,7 @@ void Threat::move()
     {
         // Move back
         mPosX = rand() % 2 == 0 ? 0 - BlueFish_WIDTH : LEVEL_WIDTH;
-        if (mPosX == 0)
+        if (mPosX == 0 - BlueFish_WIDTH)
         {
             left = false;
         }
@@ -55,7 +55,7 @@ void Threat::move()
     {
         // Move back
         mPosX = rand() % 2 == 0 ? 0 - BlueFish_WIDTH : LEVEL_WIDTH;
-        if (mPosX == 0)
+        if (mPosX == 0 - BlueFish_WIDTH)
         {
             left = false;
         }

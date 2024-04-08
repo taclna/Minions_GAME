@@ -82,7 +82,7 @@ bool loadMedia()
         success = false;
     }
     // Load background texture
-    if (!gBGTexture.loadFromFile("Data/PrimitiveEra/backgroud1080x756.jpg"))
+    if (!gBGTexture.loadFromFile("Data/PrimitiveEra/backgroud1080x756.png"))
     {
         printf("Failed to load background texture!\n");
         success = false;

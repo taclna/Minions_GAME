@@ -16,7 +16,7 @@ ThreatRedFish::ThreatRedFish()
 {
     // Initialize the offsets
     mPosX = rand() % 2 == 0 ? 0 - RedFish_WIDTH : LEVEL_WIDTH;
-    if (mPosX == 0)
+    if (mPosX == 0 - RedFish_WIDTH)
     {
         left = false;
     }
@@ -35,7 +35,7 @@ ThreatRedFish::ThreatRedFish()
 void ThreatRedFish::move()
 {
     cnt++;
-    if (cnt == 400)
+    if (cnt == 450)
     {
         if (rand() % 2 == 0)
         {
@@ -55,7 +55,7 @@ void ThreatRedFish::move()
     {
         // Move back
         mPosX = rand() % 2 == 0 ? 0 - RedFish_WIDTH : LEVEL_WIDTH;
-        if (mPosX == 0)
+        if (mPosX == 0 - RedFish_WIDTH)
         {
             left = false;
         }
@@ -69,7 +69,7 @@ void ThreatRedFish::move()
     {
         // Move back
         mPosX = rand() % 2 == 0 ? 0 - RedFish_WIDTH : LEVEL_WIDTH;
-        if (mPosX == 0)
+        if (mPosX == 0 - RedFish_WIDTH)
         {
             left = false;
         }

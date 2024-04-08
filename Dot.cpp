@@ -26,8 +26,8 @@ void setMinionsAnimation()
 Dot::Dot()
 {
     // Initialize the offsets
-    mPosX = 0;
-    mPosY = 0;
+    mPosX = SCREEN_WIDTH / 2;
+    mPosY = SCREEN_HEIGHT / 2;
 
     // Initialize the velocity
     mVelX = 0;
