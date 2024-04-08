@@ -69,8 +69,14 @@ bool loadMedia()
         printf("Failed to load dot texture!\n");
         success = false;
     }
-
+    // Load Bluefish texture
     if (!gBlueFishTexture.loadFromFile("Data/PrimitiveEra/blueFish.png"))
+    {
+        printf("Failed to load blue fish texture!\n");
+        success = false;
+    }
+    // load Redfish texture
+    if (!gRedFishTexture.loadFromFile("Data/PrimitiveEra/redFish.png"))
     {
         printf("Failed to load blue fish texture!\n");
         success = false;
@@ -90,6 +96,8 @@ void close()
     // Free loaded images
     gDotTexture.free();
     gBGTexture.free();
+    gBlueFishTexture.free();
+    gRedFishTexture.free();
 
     // Destroy window
     SDL_DestroyRenderer(gRenderer);

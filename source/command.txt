@@ -1,1 +1,1 @@
-g++ -Isource/include -Lsource/lib -o main main.cpp Texture.cpp Windows.cpp Dot.cpp Threat.cpp -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf
+g++ -Isource/include -Lsource/lib -o main main.cpp Texture.cpp Windows.cpp Dot.cpp Threat.cpp ThreatRedFish.cpp -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf

@@ -1,5 +1,28 @@
 #include "Dot.h"
 
+SDL_Rect gMinionsClips[4];
+void setMinionsAnimation()
+{
+    gMinionsClips[0].x = 0;
+    gMinionsClips[0].y = 0;
+    gMinionsClips[0].w = 32;
+    gMinionsClips[0].h = 32;
+
+    gMinionsClips[1].x = 32;
+    gMinionsClips[1].y = 0;
+    gMinionsClips[1].w = 32;
+    gMinionsClips[1].h = 32;
+
+    gMinionsClips[2].x = 64;
+    gMinionsClips[2].y = 0;
+    gMinionsClips[2].w = 32;
+    gMinionsClips[2].h = 32;
+
+    gMinionsClips[3].x = 96;
+    gMinionsClips[3].y = 0;
+    gMinionsClips[3].w = 32;
+    gMinionsClips[3].h = 32;
+}
 Dot::Dot()
 {
     // Initialize the offsets
@@ -9,9 +32,11 @@ Dot::Dot()
     // Initialize the velocity
     mVelX = 0;
     mVelY = 0;
+
+    frame = 0;
 }
 
-void Dot::handleEvent(SDL_Event &e, SDL_RendererFlip &flip)
+void Dot::handleEvent(SDL_Event &e)
 {
     // If a key was pressed
     if (e.type == SDL_KEYDOWN && e.key.repeat == 0)
@@ -26,11 +51,11 @@ void Dot::handleEvent(SDL_Event &e, SDL_RendererFlip &flip)
             mVelY += DOT_VEL;
             break;
         case SDLK_LEFT:
-            flip = SDL_FLIP_HORIZONTAL;
+            FlipMinions = SDL_FLIP_HORIZONTAL;
             mVelX -= DOT_VEL;
             break;
         case SDLK_RIGHT:
-            flip = SDL_FLIP_NONE;
+            FlipMinions = SDL_FLIP_NONE;
             mVelX += DOT_VEL;
             break;
         }
@@ -83,7 +108,14 @@ void Dot::move()
 void Dot::render(int camX, int camY, SDL_Rect *clip, SDL_RendererFlip flip)
 {
     // Show the dot relative to the camera
-    gDotTexture.render(mPosX - camX, mPosY - camY, clip, 0.0, NULL, flip);
+    SDL_Rect *currentClip = &gMinionsClips[frame / 4];
+    flip = FlipMinions;
+    gDotTexture.render(camX, camY, currentClip, 0.0, NULL, flip);
+    ++frame;
+    if (frame / 4 >= 4)
+    {
+        frame = 0;
+    }
 }
 
 int Dot::getPosX()

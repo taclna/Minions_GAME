@@ -1,23 +1,14 @@
 #pragma once
 #include "ALL.h"
 #include "Texture.h"
-void setMinionsAnimation();
-class Dot
+
+void setRedFishAnimation();
+class ThreatRedFish
 {
 public:
-    // The dimensions of the dot
-    static const int DOT_WIDTH = 32;
-    static const int DOT_HEIGHT = 32;
-
-    // Maximum axis velocity of the dot
-    static const int DOT_VEL = 3;
-
-    // Initializes the variables
-    Dot();
-
-    // Takes key presses and adjusts the dot's velocity
-    void handleEvent(SDL_Event &e);
-
+    static const int RedFish_WIDTH = 72;
+    static const int RedFish_HETGHT = 72;
+    ThreatRedFish();
     // Moves the dot
     void move();
 
@@ -35,7 +26,7 @@ private:
     // The velocity of the dot
     int mVelX, mVelY;
 
+    bool left;
+    int cnt;
     int frame;
-
-    SDL_RendererFlip FlipMinions = SDL_FLIP_NONE;
 };

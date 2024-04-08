@@ -47,3 +47,4 @@ private:
 extern LTexture gDotTexture;
 extern LTexture gBGTexture;
 extern LTexture gBlueFishTexture;
+extern LTexture gRedFishTexture;

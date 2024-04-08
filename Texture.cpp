@@ -3,6 +3,7 @@
 LTexture gDotTexture;
 LTexture gBGTexture;
 LTexture gBlueFishTexture;
+LTexture gRedFishTexture;
 LTexture::LTexture()
 {
     // Initialize
