@@ -51,11 +51,11 @@ void Dot::handleEvent(SDL_Event &e)
             mVelY += DOT_VEL;
             break;
         case SDLK_LEFT:
-            FlipMinions = SDL_FLIP_HORIZONTAL;
+            FlipMinions = SDL_FLIP_NONE;
             mVelX -= DOT_VEL;
             break;
         case SDLK_RIGHT:
-            FlipMinions = SDL_FLIP_NONE;
+            FlipMinions = SDL_FLIP_HORIZONTAL;
             mVelX += DOT_VEL;
             break;
         }
@@ -109,8 +109,7 @@ void Dot::render(int camX, int camY, SDL_Rect *clip, SDL_RendererFlip flip)
 {
     // Show the dot relative to the camera
     SDL_Rect *currentClip = &gMinionsClips[frame / 4];
-    flip = FlipMinions;
-    gDotTexture.render(camX, camY, currentClip, 0.0, NULL, flip);
+    gDotTexture.render(camX, camY, currentClip, 0.0, NULL, FlipMinions);
     ++frame;
     if (frame / 4 >= 4)
     {

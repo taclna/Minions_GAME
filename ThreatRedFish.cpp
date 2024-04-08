@@ -18,11 +18,11 @@ ThreatRedFish::ThreatRedFish()
     mPosX = rand() % 2 == 0 ? 0 - RedFish_WIDTH : LEVEL_WIDTH;
     if (mPosX == 0 - RedFish_WIDTH)
     {
-        left = false;
+        flipRedFish = SDL_FLIP_HORIZONTAL;
     }
     else
     {
-        left = true;
+        flipRedFish = SDL_FLIP_NONE;
     }
     mPosY = rand() % (LEVEL_HEIGHT - RedFish_HETGHT);
 
@@ -35,20 +35,20 @@ ThreatRedFish::ThreatRedFish()
 void ThreatRedFish::move()
 {
     cnt++;
-    if (cnt == 450)
+    if (cnt == 500)
     {
         if (rand() % 2 == 0)
         {
-            left = true;
+            flipRedFish = SDL_FLIP_HORIZONTAL;
         }
         else
         {
-            left = false;
+            flipRedFish = SDL_FLIP_NONE;
         }
         cnt = 0;
     }
     // Move the dot left or right
-    mPosX -= mVelX * (left == true ? 1 : -1);
+    mPosX -= mVelX * (flipRedFish == SDL_FLIP_NONE ? 1 : -1);
 
     // If the dot went too far to the left or right
     if (mPosX + RedFish_WIDTH < 0)
@@ -57,11 +57,11 @@ void ThreatRedFish::move()
         mPosX = rand() % 2 == 0 ? 0 - RedFish_WIDTH : LEVEL_WIDTH;
         if (mPosX == 0 - RedFish_WIDTH)
         {
-            left = false;
+            flipRedFish = SDL_FLIP_HORIZONTAL;
         }
         else
         {
-            left = true;
+            flipRedFish = SDL_FLIP_NONE;
         }
         mPosY = rand() % (LEVEL_HEIGHT - RedFish_HETGHT);
     }
@@ -71,11 +71,11 @@ void ThreatRedFish::move()
         mPosX = rand() % 2 == 0 ? 0 - RedFish_WIDTH : LEVEL_WIDTH;
         if (mPosX == 0 - RedFish_WIDTH)
         {
-            left = false;
+            flipRedFish = SDL_FLIP_HORIZONTAL;
         }
         else
         {
-            left = true;
+            flipRedFish = SDL_FLIP_NONE;
         }
         mPosY = rand() % (LEVEL_HEIGHT - RedFish_HETGHT);
     }
@@ -93,16 +93,8 @@ void ThreatRedFish::move()
 
 void ThreatRedFish::render(int camX, int camY, SDL_Rect *clip, SDL_RendererFlip flip)
 {
-    if (left == false)
-    {
-        flip = SDL_FLIP_HORIZONTAL;
-    }
-    else
-    {
-        flip = SDL_FLIP_NONE;
-    }
     SDL_Rect *currentClip = &gRedFishClips[frame / 16];
-    gRedFishTexture.render(camX, camY, currentClip, 0.0, NULL, flip);
+    gRedFishTexture.render(camX, camY, currentClip, 0.0, NULL, flipRedFish);
     ++frame;
     if (frame / 16 >= 2)
     {

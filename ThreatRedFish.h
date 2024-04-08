@@ -6,8 +6,6 @@ void setRedFishAnimation();
 class ThreatRedFish
 {
 public:
-    static const int RedFish_WIDTH = 72;
-    static const int RedFish_HETGHT = 72;
     ThreatRedFish();
     // Moves the dot
     void move();
@@ -20,13 +18,16 @@ public:
     int getPosY();
 
 private:
+    const int RedFish_WIDTH = 72;
+    const int RedFish_HETGHT = 72;
+
     // The X and Y offsets of the dot
     int mPosX, mPosY;
 
     // The velocity of the dot
     int mVelX, mVelY;
 
-    bool left;
+    SDL_RendererFlip flipRedFish;
     int cnt;
     int frame;
 };

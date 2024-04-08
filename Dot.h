@@ -5,10 +5,6 @@ void setMinionsAnimation();
 class Dot
 {
 public:
-    // The dimensions of the dot
-    static const int DOT_WIDTH = 32;
-    static const int DOT_HEIGHT = 32;
-
     // Maximum axis velocity of the dot
     static const int DOT_VEL = 3;
 
@@ -34,6 +30,9 @@ private:
 
     // The velocity of the dot
     int mVelX, mVelY;
+
+    const int DOT_WIDTH = 32;
+    const int DOT_HEIGHT = 32;
 
     int frame;
 

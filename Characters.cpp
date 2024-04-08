@@ -1,5 +1,5 @@
 #include "Characters.h"
-int NUM_RED_FISH = 4;
+int NUM_RED_FISH = 6;
 int NUM_BLUE_FISH = 2;
 Dot dot;
 Threat BlueFish[maxNUM_BLUE_FISH];
