@@ -68,7 +68,10 @@ void checkCharactersCollision()
         {
             if (Character[i].level < Character[j].level)
             {
-                checkDead[i] = checkCollision(Character[i].location, Character[j].location);
+                if (checkCollision(Character[i].location, Character[j].location))
+                {
+                    checkDead[i] = true;
+                }
             }
         }
     }

@@ -22,8 +22,8 @@ public:
     void setPosX(int x);
 
 private:
-    int BlueFish_WIDTH = 128;
-    int BlueFish_HETGHT = 128;
+    int BlueFish_WIDTH = 119;
+    int BlueFish_HETGHT = 116;
 
     // The X and Y offsets of the dot
     int mPosX, mPosY;

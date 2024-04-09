@@ -32,7 +32,6 @@ void untilQuit()
             dot.handleEvent(e);
         }
         charactersMove();
-        checkCharactersCollision();
 
         // Clear screen
         SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
@@ -45,6 +44,7 @@ void untilQuit()
 
         // Update screen
         SDL_RenderPresent(gRenderer);
+        checkCharactersCollision();
     }
 }
 
