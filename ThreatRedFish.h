@@ -17,6 +17,12 @@ public:
     int getPosX();
     int getPosY();
 
+    SDL_Rect getLocation();
+
+    int getLevel();
+
+    void setPosX(int x);
+
 private:
     const int RedFish_WIDTH = 72;
     const int RedFish_HETGHT = 72;
@@ -30,4 +36,8 @@ private:
     SDL_RendererFlip flipRedFish;
     int cnt;
     int frame;
+
+    int level = 5;
+
+    SDL_Rect locationRedFish;
 };

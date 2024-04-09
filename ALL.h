@@ -18,3 +18,21 @@ extern SDL_Window *gWindow;
 
 // The window renderer
 extern SDL_Renderer *gRenderer;
+
+struct rectLevel
+{
+    SDL_Rect location;
+    int level;
+
+    rectLevel()
+    {
+        location = {0, 0, 0, 0};
+        level = 0;
+    }
+
+    rectLevel(SDL_Rect mLocation, int mLevel)
+    {
+        location = mLocation;
+        level = mLevel;
+    }
+};

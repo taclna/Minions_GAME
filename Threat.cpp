@@ -12,6 +12,7 @@ Threat::Threat()
         flipBlueFish = SDL_FLIP_NONE;
     }
     mPosY = rand() % (LEVEL_HEIGHT - BlueFish_HETGHT);
+    locationBlueFish = {mPosX, mPosY, BlueFish_WIDTH, BlueFish_HETGHT};
 
     // Initialize the velocity
     mVelX = 1;
@@ -66,6 +67,7 @@ void Threat::move()
         }
         mPosY = rand() % (LEVEL_HEIGHT - BlueFish_HETGHT);
     }
+    locationBlueFish = {mPosX, mPosY, BlueFish_WIDTH, BlueFish_HETGHT};
 
     // // Move the dot up or down
     // mPosY += mVelY;
@@ -91,4 +93,19 @@ int Threat::getPosX()
 int Threat::getPosY()
 {
     return mPosY;
+}
+
+SDL_Rect Threat::getLocation()
+{
+    return locationBlueFish;
+}
+
+int Threat::getLevel()
+{
+    return level;
+}
+
+void Threat::setPosX(int x)
+{
+    mPosX = x;
 }

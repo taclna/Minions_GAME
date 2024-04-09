@@ -25,6 +25,7 @@ ThreatRedFish::ThreatRedFish()
         flipRedFish = SDL_FLIP_NONE;
     }
     mPosY = rand() % (LEVEL_HEIGHT - RedFish_HETGHT);
+    locationRedFish = {mPosX, mPosY, RedFish_WIDTH, RedFish_HETGHT};
 
     // Initialize the velocity
     mVelX = 2;
@@ -79,6 +80,7 @@ void ThreatRedFish::move()
         }
         mPosY = rand() % (LEVEL_HEIGHT - RedFish_HETGHT);
     }
+    locationRedFish = {mPosX, mPosY, RedFish_WIDTH, RedFish_HETGHT};
 
     // // Move the dot up or down
     // mPosY += mVelY;
@@ -110,4 +112,19 @@ int ThreatRedFish::getPosX()
 int ThreatRedFish::getPosY()
 {
     return mPosY;
+}
+
+SDL_Rect ThreatRedFish::getLocation()
+{
+    return locationRedFish;
+}
+
+int ThreatRedFish::getLevel()
+{
+    return level;
+}
+
+void ThreatRedFish::setPosX(int x)
+{
+    mPosX = x;
 }

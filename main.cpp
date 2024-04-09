@@ -5,6 +5,7 @@
 #include "Threat.h"
 #include "ThreatRedFish.h"
 #include "Characters.h"
+#include "Collision.h"
 
 void untilQuit()
 {
@@ -30,8 +31,8 @@ void untilQuit()
             // Handle input for the dot
             dot.handleEvent(e);
         }
-
         charactersMove();
+        checkCharactersCollision();
 
         // Clear screen
         SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);

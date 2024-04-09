@@ -1,3 +1,7 @@
+#include "Collision.h"
+rectLevel Character[1000];
+bool checkDead[1000];
+
 bool checkCollision(SDL_Rect a, SDL_Rect b)
 {
     // The sides of the rectangles
@@ -41,4 +45,49 @@ bool checkCollision(SDL_Rect a, SDL_Rect b)
 
     // If none of the sides from A are outside B
     return true;
+}
+
+void checkCharactersCollision()
+{
+    memset(checkDead, false, sizeof(checkDead));
+    Character[0] = {dot.getLocation(), dot.getLevel()};
+    int NUM_CHARACTERS = 0;
+
+    for (int i = 0; i < NUM_RED_FISH; i++)
+    {
+        Character[++NUM_CHARACTERS] = {RedFish[i].getLocation(), RedFish[i].getLevel()};
+    }
+    for (int i = 0; i < NUM_BLUE_FISH; i++)
+    {
+        Character[++NUM_CHARACTERS] = {BlueFish[i].getLocation(), BlueFish[i].getLevel()};
+    }
+
+    for (int i = 1; i <= NUM_CHARACTERS; i++)
+    {
+        for (int j = i + 1; j <= NUM_CHARACTERS; j++)
+        {
+            if (Character[i].level < Character[j].level)
+            {
+                checkDead[i] = checkCollision(Character[i].location, Character[j].location);
+            }
+        }
+    }
+
+    NUM_CHARACTERS = 0;
+    for (int i = 0; i < NUM_RED_FISH; i++)
+    {
+        Character[++NUM_CHARACTERS] = {RedFish[i].getLocation(), RedFish[i].getLevel()};
+        if (checkDead[NUM_CHARACTERS])
+        {
+            RedFish[i].setPosX(SCREEN_WIDTH);
+        }
+    }
+    for (int i = 0; i < NUM_BLUE_FISH; i++)
+    {
+        Character[++NUM_CHARACTERS] = {BlueFish[i].getLocation(), BlueFish[i].getLevel()};
+        if (checkDead[NUM_CHARACTERS])
+        {
+            BlueFish[i].setPosX(SCREEN_WIDTH);
+        }
+    }
 }

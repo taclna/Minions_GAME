@@ -34,6 +34,8 @@ Dot::Dot()
     mVelY = 0;
 
     frame = 0;
+
+    locationMinions = {mPosX, mPosY, DOT_WIDTH, DOT_HEIGHT};
 }
 
 void Dot::handleEvent(SDL_Event &e)
@@ -103,6 +105,8 @@ void Dot::move()
         // Move back
         mPosY -= mVelY;
     }
+
+    locationMinions = {mPosX, mPosY, DOT_WIDTH, DOT_HEIGHT};
 }
 
 void Dot::render(int camX, int camY, SDL_Rect *clip, SDL_RendererFlip flip)
@@ -125,4 +129,14 @@ int Dot::getPosX()
 int Dot::getPosY()
 {
     return mPosY;
+}
+
+SDL_Rect Dot::getLocation()
+{
+    return locationMinions;
+}
+
+int Dot::getLevel()
+{
+    return level;
 }

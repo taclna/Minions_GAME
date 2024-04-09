@@ -24,6 +24,10 @@ public:
     int getPosX();
     int getPosY();
 
+    SDL_Rect getLocation();
+
+    int getLevel();
+
 private:
     // The X and Y offsets of the dot
     int mPosX, mPosY;
@@ -31,10 +35,14 @@ private:
     // The velocity of the dot
     int mVelX, mVelY;
 
-    const int DOT_WIDTH = 32;
-    const int DOT_HEIGHT = 32;
+    int DOT_WIDTH = 32;
+    int DOT_HEIGHT = 32;
 
     int frame;
 
     SDL_RendererFlip FlipMinions = SDL_FLIP_NONE;
+
+    SDL_Rect locationMinions;
+
+    int level = 1;
 };

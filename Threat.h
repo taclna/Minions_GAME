@@ -15,9 +15,15 @@ public:
     int getPosX();
     int getPosY();
 
+    SDL_Rect getLocation();
+
+    int getLevel();
+
+    void setPosX(int x);
+
 private:
-    const int BlueFish_WIDTH = 128;
-    const int BlueFish_HETGHT = 128;
+    int BlueFish_WIDTH = 128;
+    int BlueFish_HETGHT = 128;
 
     // The X and Y offsets of the dot
     int mPosX, mPosY;
@@ -28,4 +34,8 @@ private:
     int cnt;
 
     SDL_RendererFlip flipBlueFish;
+
+    int level = 10;
+
+    SDL_Rect locationBlueFish;
 };
