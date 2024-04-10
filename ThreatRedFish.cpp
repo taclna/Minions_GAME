@@ -128,3 +128,18 @@ void ThreatRedFish::setPosX(int x)
 {
     mPosX = x;
 }
+
+SDL_RendererFlip ThreatRedFish::getFlip()
+{
+    return flipRedFish;
+}
+
+void ThreatRedFish::setNumOfCharacter(int x)
+{
+    NUM_OF_CHARACTER = x;
+}
+
+int ThreatRedFish::getNumOfCharacter()
+{
+    return NUM_OF_CHARACTER;
+}

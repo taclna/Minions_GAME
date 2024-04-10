@@ -88,6 +88,12 @@ bool loadMedia()
         success = false;
     }
 
+    if (!gBlackBTexture.loadFromFile("Data/PrimitiveEra/blackBack.png"))
+    {
+        cout << "Failed to load black background texture!\n";
+        success = false;
+    }
+
     return success;
 }
 
@@ -98,6 +104,7 @@ void close()
     gBGTexture.free();
     gBlueFishTexture.free();
     gRedFishTexture.free();
+    gBlackBTexture.free();
 
     // Destroy window
     SDL_DestroyRenderer(gRenderer);

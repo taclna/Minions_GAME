@@ -21,6 +21,12 @@ public:
 
     void setPosX(int x);
 
+    SDL_RendererFlip getFlip();
+
+    void setNumOfCharacter(int x);
+
+    int getNumOfCharacter();
+
 private:
     int BlueFish_WIDTH = 119;
     int BlueFish_HETGHT = 116;
@@ -38,4 +44,6 @@ private:
     int level = 10;
 
     SDL_Rect locationBlueFish;
+
+    int NUM_OF_CHARACTER;
 };

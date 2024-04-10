@@ -23,6 +23,12 @@ public:
 
     void setPosX(int x);
 
+    SDL_RendererFlip getFlip();
+
+    void setNumOfCharacter(int x);
+
+    int getNumOfCharacter();
+
 private:
     const int RedFish_WIDTH = 72;
     const int RedFish_HETGHT = 72;
@@ -40,4 +46,6 @@ private:
     int level = 5;
 
     SDL_Rect locationRedFish;
+
+    int NUM_OF_CHARACTER;
 };

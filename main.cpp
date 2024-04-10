@@ -6,6 +6,7 @@
 #include "ThreatRedFish.h"
 #include "Characters.h"
 #include "Collision.h"
+#include "Skill.h"
 
 void untilQuit()
 {
@@ -28,6 +29,7 @@ void untilQuit()
                 quit = true;
             }
 
+            handleSkillEvent(e);
             // Handle input for the dot
             dot.handleEvent(e);
         }

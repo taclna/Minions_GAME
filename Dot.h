@@ -28,6 +28,8 @@ public:
 
     int getLevel();
 
+    SDL_RendererFlip getFlip();
+
 private:
     // The X and Y offsets of the dot
     int mPosX, mPosY;

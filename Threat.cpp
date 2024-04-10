@@ -109,3 +109,18 @@ void Threat::setPosX(int x)
 {
     mPosX = x;
 }
+
+SDL_RendererFlip Threat::getFlip()
+{
+    return flipBlueFish;
+}
+
+void Threat::setNumOfCharacter(int x)
+{
+    NUM_OF_CHARACTER = x;
+}
+
+int Threat::getNumOfCharacter()
+{
+    return NUM_OF_CHARACTER;
+}

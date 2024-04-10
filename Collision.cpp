@@ -1,5 +1,4 @@
 #include "Collision.h"
-rectLevel Character[1000];
 bool checkDead[1000];
 
 bool checkCollision(SDL_Rect a, SDL_Rect b)
@@ -47,20 +46,33 @@ bool checkCollision(SDL_Rect a, SDL_Rect b)
     return true;
 }
 
+bool checkDeadCollision(rectLevel a, rectLevel b)
+{
+    if (checkCollision(a.location, b.location))
+    {
+        if (a.Flip != b.Flip)
+        {
+            return true;
+        }
+        else
+        {
+            if (a.Flip == SDL_FLIP_NONE)
+            {
+                return !(a.location.x > b.location.x);
+            }
+            else
+            {
+                return !(a.location.x + a.location.w < b.location.x + b.location.w);
+            }
+        }
+    }
+    return false;
+}
+
 void checkCharactersCollision()
 {
     memset(checkDead, false, sizeof(checkDead));
-    Character[0] = {dot.getLocation(), dot.getLevel()};
-    int NUM_CHARACTERS = 0;
-
-    for (int i = 0; i < NUM_RED_FISH; i++)
-    {
-        Character[++NUM_CHARACTERS] = {RedFish[i].getLocation(), RedFish[i].getLevel()};
-    }
-    for (int i = 0; i < NUM_BLUE_FISH; i++)
-    {
-        Character[++NUM_CHARACTERS] = {BlueFish[i].getLocation(), BlueFish[i].getLevel()};
-    }
+    setCharacter();
 
     for (int i = 1; i <= NUM_CHARACTERS; i++)
     {
@@ -68,7 +80,7 @@ void checkCharactersCollision()
         {
             if (Character[i].level < Character[j].level)
             {
-                if (checkCollision(Character[i].location, Character[j].location))
+                if (checkDeadCollision(Character[i], Character[j]))
                 {
                     checkDead[i] = true;
                 }
@@ -76,19 +88,19 @@ void checkCharactersCollision()
         }
     }
 
-    NUM_CHARACTERS = 0;
+    int NUM_CHARACTERS_DEAD = 0;
     for (int i = 0; i < NUM_RED_FISH; i++)
     {
-        Character[++NUM_CHARACTERS] = {RedFish[i].getLocation(), RedFish[i].getLevel()};
-        if (checkDead[NUM_CHARACTERS])
+        ++NUM_CHARACTERS_DEAD;
+        if (checkDead[NUM_CHARACTERS_DEAD])
         {
             RedFish[i].setPosX(SCREEN_WIDTH);
         }
     }
     for (int i = 0; i < NUM_BLUE_FISH; i++)
     {
-        Character[++NUM_CHARACTERS] = {BlueFish[i].getLocation(), BlueFish[i].getLevel()};
-        if (checkDead[NUM_CHARACTERS])
+        ++NUM_CHARACTERS_DEAD;
+        if (checkDead[NUM_CHARACTERS_DEAD])
         {
             BlueFish[i].setPosX(SCREEN_WIDTH);
         }

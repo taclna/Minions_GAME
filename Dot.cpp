@@ -140,3 +140,8 @@ int Dot::getLevel()
 {
     return level;
 }
+
+SDL_RendererFlip Dot::getFlip()
+{
+    return FlipMinions;
+}

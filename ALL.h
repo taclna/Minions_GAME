@@ -23,16 +23,19 @@ struct rectLevel
 {
     SDL_Rect location;
     int level;
+    SDL_RendererFlip Flip;
 
     rectLevel()
     {
         location = {0, 0, 0, 0};
         level = 0;
+        Flip = SDL_FLIP_NONE;
     }
 
-    rectLevel(SDL_Rect mLocation, int mLevel)
+    rectLevel(SDL_Rect mLocation, int mLevel, SDL_RendererFlip mFlip)
     {
         location = mLocation;
         level = mLevel;
+        Flip = mFlip;
     }
 };
