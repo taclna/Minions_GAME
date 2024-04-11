@@ -48,4 +48,10 @@ private:
     SDL_Rect locationRedFish;
 
     int NUM_OF_CHARACTER;
+
+    LTexture gTextureTextLevel;
+
+    std::string textLevel;
+
+    SDL_Color textColor;
 };

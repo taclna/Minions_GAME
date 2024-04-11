@@ -12,6 +12,7 @@ void setNumThreat()
     {
         NUM_RED_FISH = 10;
         NUM_BLUE_FISH = 5;
+        levelMinions = 100;
         return;
     }
 }

@@ -19,6 +19,8 @@ Threat::Threat()
     mVelY = 1;
 
     cnt = 0;
+
+    textLevel = "LEVEL.  10";
 }
 void Threat::move()
 {
@@ -82,6 +84,20 @@ void Threat::move()
 
 void Threat::render(int camX, int camY, SDL_Rect *clip, SDL_RendererFlip flip)
 {
+    if (levelMinions >= level)
+    {
+        textColor = {0, 205, 0};
+    }
+    else
+    {
+        textColor = {255, 0, 0};
+    }
+    if (!gTextureTextLevel.loadFromRenderedText(gFontTextLevel, textLevel, textColor))
+    {
+        cout << "khong load duoc gTextureTextLevel" << endl;
+    }
+
+    gTextureTextLevel.render(camX + (BlueFish_WIDTH - gTextureTextLevel.getWidth()) / 2, camY + BlueFish_HETGHT + 3);
     gBlueFishTexture.render(camX, camY, clip, 0.0, NULL, flipBlueFish);
 }
 

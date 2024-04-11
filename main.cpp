@@ -8,6 +8,7 @@
 #include "Collision.h"
 #include "Skill.h"
 
+int levelMinions = 1;
 void untilQuit()
 {
     bool quit = false;
@@ -47,6 +48,7 @@ void untilQuit()
         // Update screen
         SDL_RenderPresent(gRenderer);
         checkCharactersCollision();
+        levelMinions = dot.getLevel();
     }
 }
 
@@ -66,6 +68,7 @@ int main(int argc, char *args[])
         }
         else
         {
+            gFontTextLevel = TTF_OpenFont("Data/Font/Nihonium113.ttf", 13);
             setMinionsAnimation();
             setRedFishAnimation();
 

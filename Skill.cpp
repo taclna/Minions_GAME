@@ -55,7 +55,6 @@ void renderSkillScreen(int NUM_OF_CHARACTER)
 
 void chooseThreat()
 {
-    setCharacter();
     SDL_Event e;
     int NUM_OF_CHARACTER = 0;
     bool quitChooseThreat = false;
@@ -97,7 +96,6 @@ void handleSkillEvent(SDL_Event &e)
         {
         case SDLK_TAB:
             quit = false;
-            int cnt = 0;
             while (!quit)
             {
                 renderSkillScreen(-1);

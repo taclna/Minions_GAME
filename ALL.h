@@ -14,10 +14,14 @@ const int LEVEL_HEIGHT = 756;
 const int SCREEN_WIDTH = 1080;
 const int SCREEN_HEIGHT = 756;
 
+extern int levelMinions;
+
 extern SDL_Window *gWindow;
 
 // The window renderer
 extern SDL_Renderer *gRenderer;
+
+extern TTF_Font *gFontTextLevel;
 
 struct rectLevel
 {

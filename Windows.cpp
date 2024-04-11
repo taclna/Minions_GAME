@@ -4,6 +4,7 @@ SDL_Window *gWindow = NULL;
 
 // The window renderer
 SDL_Renderer *gRenderer = NULL;
+
 bool init()
 {
     // Initialization flag
@@ -49,6 +50,13 @@ bool init()
                 if (!(IMG_Init(imgFlags) & imgFlags))
                 {
                     printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
+                    success = false;
+                }
+
+                // Initialize SDL_ttf
+                if (TTF_Init() == -1)
+                {
+                    printf("SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError());
                     success = false;
                 }
             }
@@ -111,8 +119,10 @@ void close()
     SDL_DestroyWindow(gWindow);
     gWindow = NULL;
     gRenderer = NULL;
+    gFontTextLevel = NULL;
 
     // Quit SDL subsystems
+    TTF_Quit();
     IMG_Quit();
     SDL_Quit();
 }
