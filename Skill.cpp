@@ -71,18 +71,36 @@ void chooseThreat()
                     ++NUM_OF_CHARACTER;
                     break;
                 case SDLK_q:
+                    NUM_MINIONS_CHOOSE = validThreat[NUM_OF_CHARACTER];
+                    MinionsCometoThreat();
                     quitChooseThreat = true;
                     quit = true;
                     break;
                 }
             }
         }
-        NUM_OF_CHARACTER %= NUM_CHARACTERS;
-        if (NUM_OF_CHARACTER == 0)
+        if (validThreat.size() == 0)
         {
-            NUM_OF_CHARACTER = NUM_CHARACTERS;
+            quit = true;
+            break;
         }
-        renderSkillScreen(NUM_OF_CHARACTER);
+        NUM_OF_CHARACTER %= validThreat.size();
+        renderSkillScreen(validThreat[NUM_OF_CHARACTER]);
+    }
+}
+
+void MinionsCometoThreat()
+{
+    dot.setFlip(Character[NUM_MINIONS_CHOOSE].Flip);
+    if (dot.getFlip() == SDL_FLIP_NONE)
+    {
+        dot.setPosX(Character[NUM_MINIONS_CHOOSE].location.x + Character[NUM_MINIONS_CHOOSE].location.w);
+        dot.setPosY(Character[NUM_MINIONS_CHOOSE].location.y + (Character[NUM_MINIONS_CHOOSE].location.h - dot.Minions_HEIGHT) / 2);
+    }
+    else
+    {
+        dot.setPosX(Character[NUM_MINIONS_CHOOSE].location.x - dot.Minions_WIDTH);
+        dot.setPosY(Character[NUM_MINIONS_CHOOSE].location.y + (Character[NUM_MINIONS_CHOOSE].location.h - dot.Minions_HEIGHT) / 2);
     }
 }
 
@@ -98,7 +116,6 @@ void handleSkillEvent(SDL_Event &e)
             quit = false;
             while (!quit)
             {
-                renderSkillScreen(-1);
                 chooseThreat();
             }
             break;

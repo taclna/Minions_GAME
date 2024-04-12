@@ -140,11 +140,6 @@ int ThreatRedFish::getLevel()
     return level;
 }
 
-void ThreatRedFish::setPosX(int x)
-{
-    mPosX = x;
-}
-
 SDL_RendererFlip ThreatRedFish::getFlip()
 {
     return flipRedFish;
@@ -158,4 +153,19 @@ void ThreatRedFish::setNumOfCharacter(int x)
 int ThreatRedFish::getNumOfCharacter()
 {
     return NUM_OF_CHARACTER;
+}
+
+void ThreatRedFish::setPosX(int x)
+{
+    mPosX = x;
+}
+
+void ThreatRedFish::setPosY(int y)
+{
+    mPosY = y;
+}
+
+void ThreatRedFish::setFlip(SDL_RendererFlip xFlip)
+{
+    flipRedFish = xFlip;
 }

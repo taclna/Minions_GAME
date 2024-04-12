@@ -23,6 +23,8 @@ extern SDL_Renderer *gRenderer;
 
 extern TTF_Font *gFontTextLevel;
 
+extern int NUM_MINIONS_CHOOSE;
+
 struct rectLevel
 {
     SDL_Rect location;

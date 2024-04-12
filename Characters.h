@@ -19,4 +19,5 @@ void charactersRender();
 extern Dot dot;
 extern Threat BlueFish[maxNUM_BLUE_FISH];
 extern ThreatRedFish RedFish[maxNUM_RED_FISH];
+extern vector<int> validThreat;
 void setCharacter();

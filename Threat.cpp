@@ -121,11 +121,6 @@ int Threat::getLevel()
     return level;
 }
 
-void Threat::setPosX(int x)
-{
-    mPosX = x;
-}
-
 SDL_RendererFlip Threat::getFlip()
 {
     return flipBlueFish;
@@ -139,4 +134,19 @@ void Threat::setNumOfCharacter(int x)
 int Threat::getNumOfCharacter()
 {
     return NUM_OF_CHARACTER;
+}
+
+void Threat::setPosX(int x)
+{
+    mPosX = x;
+}
+
+void Threat::setPosY(int y)
+{
+    mPosY = y;
+}
+
+void Threat::setFlip(SDL_RendererFlip xFlip)
+{
+    flipBlueFish = xFlip;
 }

@@ -145,3 +145,18 @@ SDL_RendererFlip Dot::getFlip()
 {
     return FlipMinions;
 }
+
+void Dot::setPosX(int x)
+{
+    mPosX = x;
+}
+
+void Dot::setPosY(int y)
+{
+    mPosY = y;
+}
+
+void Dot::setFlip(SDL_RendererFlip xFlip)
+{
+    FlipMinions = xFlip;
+}

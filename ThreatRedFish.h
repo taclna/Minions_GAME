@@ -17,11 +17,13 @@ public:
     int getPosX();
     int getPosY();
 
+    void setPosX(int x);
+    void setPosY(int y);
+    void setFlip(SDL_RendererFlip xFlip);
+
     SDL_Rect getLocation();
 
     int getLevel();
-
-    void setPosX(int x);
 
     SDL_RendererFlip getFlip();
 

@@ -72,7 +72,6 @@ bool checkDeadCollision(rectLevel a, rectLevel b)
 void checkCharactersCollision()
 {
     memset(checkDead, false, sizeof(checkDead));
-    setCharacter();
 
     for (int i = 1; i <= NUM_CHARACTERS; i++)
     {
@@ -94,6 +93,8 @@ void checkCharactersCollision()
         ++NUM_CHARACTERS_DEAD;
         if (checkDead[NUM_CHARACTERS_DEAD])
         {
+            if (NUM_CHARACTERS_DEAD == NUM_MINIONS_CHOOSE)
+                NUM_MINIONS_CHOOSE = -1;
             RedFish[i].setPosX(SCREEN_WIDTH);
         }
     }
@@ -102,6 +103,8 @@ void checkCharactersCollision()
         ++NUM_CHARACTERS_DEAD;
         if (checkDead[NUM_CHARACTERS_DEAD])
         {
+            if (NUM_CHARACTERS_DEAD == NUM_MINIONS_CHOOSE)
+                NUM_MINIONS_CHOOSE = -1;
             BlueFish[i].setPosX(SCREEN_WIDTH);
         }
     }

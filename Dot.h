@@ -8,6 +8,9 @@ public:
     // Maximum axis velocity of the dot
     static const int DOT_VEL = 3;
 
+    static const int Minions_WIDTH = 32;
+    static const int Minions_HEIGHT = 32;
+
     // Initializes the variables
     Dot();
 
@@ -23,6 +26,10 @@ public:
     // Position accessors
     int getPosX();
     int getPosY();
+
+    void setPosX(int x);
+    void setPosY(int y);
+    void setFlip(SDL_RendererFlip xFlip);
 
     SDL_Rect getLocation();
 

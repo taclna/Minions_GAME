@@ -20,7 +20,6 @@ void untilQuit()
     while (!quit)
     {
         setNumThreat();
-
         // Handle events on queue
         while (SDL_PollEvent(&e) != 0)
         {
@@ -47,8 +46,8 @@ void untilQuit()
 
         // Update screen
         SDL_RenderPresent(gRenderer);
+        setCharacter();
         checkCharactersCollision();
-        levelMinions = dot.getLevel();
     }
 }
 
