@@ -25,7 +25,7 @@ Threat::Threat()
 void Threat::move()
 {
     cnt++;
-    if (cnt == 500)
+    if (cnt == 500 && NUM_OF_CHARACTER != NUM_MINIONS_CHOOSE)
     {
         if (rand() % 2 == 0)
         {
@@ -44,6 +44,10 @@ void Threat::move()
     if (mPosX + BlueFish_WIDTH < 0)
     {
         // Move back
+        if (NUM_OF_CHARACTER == NUM_MINIONS_CHOOSE)
+        {
+            NUM_MINIONS_CHOOSE = -1;
+        }
         mPosX = rand() % 2 == 0 ? 0 - BlueFish_WIDTH : LEVEL_WIDTH;
         if (mPosX == 0 - BlueFish_WIDTH)
         {
@@ -59,6 +63,10 @@ void Threat::move()
     {
         // Move back
         mPosX = rand() % 2 == 0 ? 0 - BlueFish_WIDTH : LEVEL_WIDTH;
+        if (NUM_OF_CHARACTER == NUM_MINIONS_CHOOSE)
+        {
+            NUM_MINIONS_CHOOSE = -1;
+        }
         if (mPosX == 0 - BlueFish_WIDTH)
         {
             flipBlueFish = SDL_FLIP_HORIZONTAL;

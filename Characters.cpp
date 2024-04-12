@@ -32,6 +32,7 @@ void charactersMove()
     // move RedFish
     for (int i = 0; i < NUM_RED_FISH; i++)
     {
+
         RedFish[i].move();
     }
 }
@@ -75,8 +76,8 @@ void charactersRender()
                     {
                         dot.setPosX(LEVEL_WIDTH - dot.Minions_WIDTH);
                     }
-                    RedFish[i].setPosX(dot.getPosX() - RedFish[i].getLocation().w);
-                    RedFish[i].setPosY(dot.getPosY() - (RedFish[i].getLocation().h - dot.Minions_HEIGHT) / 2);
+                    // RedFish[i].setPosX(dot.getPosX() - RedFish[i].getLocation().w);
+                    // RedFish[i].setPosY(dot.getPosY() - (RedFish[i].getLocation().h - dot.Minions_HEIGHT) / 2);
                 }
                 else if (dot.getFlip() == SDL_FLIP_HORIZONTAL)
                 {
@@ -91,8 +92,8 @@ void charactersRender()
                     {
                         dot.setPosX(LEVEL_WIDTH - dot.Minions_WIDTH);
                     }
-                    RedFish[i].setPosX(dot.getPosX() + dot.getLocation().w);
-                    RedFish[i].setPosY(dot.getPosY() - (RedFish[i].getLocation().h - dot.Minions_HEIGHT) / 2);
+                    // RedFish[i].setPosX(dot.getPosX() + dot.getLocation().w);
+                    // RedFish[i].setPosY(dot.getPosY() - (RedFish[i].getLocation().h - dot.Minions_HEIGHT) / 2);
                 }
             }
         }

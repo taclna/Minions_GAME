@@ -38,7 +38,7 @@ ThreatRedFish::ThreatRedFish()
 void ThreatRedFish::move()
 {
     cnt++;
-    if (cnt == 500)
+    if (cnt == 500 && NUM_OF_CHARACTER != NUM_MINIONS_CHOOSE)
     {
         if (rand() % 2 == 0)
         {
@@ -56,6 +56,11 @@ void ThreatRedFish::move()
     // If the dot went too far to the left or right
     if (mPosX + RedFish_WIDTH < 0)
     {
+        if (NUM_OF_CHARACTER == NUM_MINIONS_CHOOSE)
+        {
+            NUM_MINIONS_CHOOSE = -1;
+        }
+
         // Move back
         mPosX = rand() % 2 == 0 ? 0 - RedFish_WIDTH : LEVEL_WIDTH;
         if (mPosX == 0 - RedFish_WIDTH)
@@ -70,6 +75,11 @@ void ThreatRedFish::move()
     }
     if (mPosX > LEVEL_WIDTH)
     {
+        if (NUM_OF_CHARACTER == NUM_MINIONS_CHOOSE)
+        {
+            NUM_MINIONS_CHOOSE = -1;
+        }
+
         // Move back
         mPosX = rand() % 2 == 0 ? 0 - RedFish_WIDTH : LEVEL_WIDTH;
         if (mPosX == 0 - RedFish_WIDTH)
