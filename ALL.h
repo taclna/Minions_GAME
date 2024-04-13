@@ -23,6 +23,9 @@ extern SDL_Renderer *gRenderer;
 
 extern TTF_Font *gFontTextLevel;
 
+extern SDL_Color colorRed;
+extern SDL_Color colorYellow;
+
 extern int NUM_MINIONS_CHOOSE;
 
 struct rectLevel

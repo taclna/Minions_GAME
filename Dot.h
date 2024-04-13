@@ -8,7 +8,7 @@ public:
     // Maximum axis velocity of the dot
     static const int DOT_VEL = 3;
 
-    static const int Minions_WIDTH = 32;
+    static const int Minions_WIDTH = 26;
     static const int Minions_HEIGHT = 32;
 
     // Initializes the variables
@@ -34,8 +34,11 @@ public:
     SDL_Rect getLocation();
 
     int getLevel();
+    void setLevel(int mLevel);
 
     SDL_RendererFlip getFlip();
+
+    void characterReset();
 
 private:
     // The X and Y offsets of the dot
@@ -44,7 +47,7 @@ private:
     // The velocity of the dot
     int mVelX, mVelY;
 
-    int DOT_WIDTH = 32;
+    int DOT_WIDTH = 26;
     int DOT_HEIGHT = 32;
 
     int frame;

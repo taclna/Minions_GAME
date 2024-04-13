@@ -34,6 +34,9 @@ public:
     int getWidth();
     int getHeight();
 
+    int getPosX();
+    int getPosY();
+
 private:
     // The actual hardware texture
     SDL_Texture *mTexture;
@@ -41,6 +44,9 @@ private:
     // Image dimensions
     int mWidth;
     int mHeight;
+
+    int mPosX;
+    int mPosY;
 };
 extern LTexture gDotTexture;
 extern LTexture gBGTexture;

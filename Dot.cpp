@@ -5,29 +5,29 @@ void setMinionsAnimation()
 {
     gMinionsClips[0].x = 0;
     gMinionsClips[0].y = 0;
-    gMinionsClips[0].w = 32;
+    gMinionsClips[0].w = 26;
     gMinionsClips[0].h = 32;
 
-    gMinionsClips[1].x = 32;
+    gMinionsClips[1].x = 26;
     gMinionsClips[1].y = 0;
-    gMinionsClips[1].w = 32;
+    gMinionsClips[1].w = 26;
     gMinionsClips[1].h = 32;
 
-    gMinionsClips[2].x = 64;
+    gMinionsClips[2].x = 52;
     gMinionsClips[2].y = 0;
-    gMinionsClips[2].w = 32;
+    gMinionsClips[2].w = 26;
     gMinionsClips[2].h = 32;
 
-    gMinionsClips[3].x = 96;
+    gMinionsClips[3].x = 78;
     gMinionsClips[3].y = 0;
-    gMinionsClips[3].w = 32;
+    gMinionsClips[3].w = 26;
     gMinionsClips[3].h = 32;
 }
 Dot::Dot()
 {
     // Initialize the offsets
-    mPosX = SCREEN_WIDTH / 2;
-    mPosY = SCREEN_HEIGHT / 2;
+    mPosX = (SCREEN_WIDTH - Minions_WIDTH) / 2;
+    mPosY = (SCREEN_HEIGHT - Minions_HEIGHT) / 2;
 
     // Initialize the velocity
     mVelX = 0;
@@ -86,6 +86,12 @@ void Dot::handleEvent(SDL_Event &e)
 
 void Dot::move()
 {
+    ++frame;
+    if (frame / 4 >= 4)
+    {
+        frame = 0;
+    }
+
     // Move the dot left or right
     mPosX += mVelX;
 
@@ -114,11 +120,6 @@ void Dot::render(int camX, int camY, SDL_Rect *clip, SDL_RendererFlip flip)
     // Show the dot relative to the camera
     SDL_Rect *currentClip = &gMinionsClips[frame / 4];
     gDotTexture.render(camX, camY, currentClip, 0.0, NULL, FlipMinions);
-    ++frame;
-    if (frame / 4 >= 4)
-    {
-        frame = 0;
-    }
 }
 
 int Dot::getPosX()
@@ -159,4 +160,24 @@ void Dot::setPosY(int y)
 void Dot::setFlip(SDL_RendererFlip xFlip)
 {
     FlipMinions = xFlip;
+}
+
+void Dot::setLevel(int mLevel)
+{
+    level = mLevel;
+}
+
+void Dot::characterReset()
+{
+    // Initialize the offsets
+    mPosX = (SCREEN_WIDTH - Minions_WIDTH) / 2;
+    mPosY = (SCREEN_HEIGHT - Minions_HEIGHT) / 2;
+
+    // Initialize the velocity
+    mVelX = 0;
+    mVelY = 0;
+
+    frame = 0;
+
+    locationMinions = {mPosX, mPosY, DOT_WIDTH, DOT_HEIGHT};
 }

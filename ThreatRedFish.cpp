@@ -1,31 +1,33 @@
 #include "ThreatRedFish.h"
 SDL_Rect gRedFishClips[2];
+const int clipWIDTH = 72;
+const int clipHEIGHT = 68;
 void setRedFishAnimation()
 {
     gRedFishClips[0].x = 0;
     gRedFishClips[0].y = 0;
-    gRedFishClips[0].w = 72;
-    gRedFishClips[0].h = 72;
+    gRedFishClips[0].w = clipWIDTH;
+    gRedFishClips[0].h = clipHEIGHT;
 
     gRedFishClips[1].x = 72;
     gRedFishClips[1].y = 0;
-    gRedFishClips[1].w = 72;
-    gRedFishClips[1].h = 72;
+    gRedFishClips[1].w = clipWIDTH;
+    gRedFishClips[1].h = clipHEIGHT;
 }
 ThreatRedFish::ThreatRedFish()
 {
     // Initialize the offsets
-    mPosX = rand() % 2 == 0 ? 0 - RedFish_WIDTH : LEVEL_WIDTH;
-    if (mPosX == 0 - RedFish_WIDTH)
+    mPosX = rand() % 2 == 0 ? 0 - Fish_WIDTH : LEVEL_WIDTH;
+    if (mPosX == 0 - Fish_WIDTH)
     {
-        flipRedFish = SDL_FLIP_HORIZONTAL;
+        flipFish = SDL_FLIP_HORIZONTAL;
     }
     else
     {
-        flipRedFish = SDL_FLIP_NONE;
+        flipFish = SDL_FLIP_NONE;
     }
-    mPosY = rand() % (LEVEL_HEIGHT - RedFish_HETGHT);
-    locationRedFish = {mPosX, mPosY, RedFish_WIDTH, RedFish_HETGHT};
+    mPosY = rand() % (LEVEL_HEIGHT - Fish_HETGHT);
+    locationFish = {mPosX, mPosY, Fish_WIDTH, Fish_HETGHT};
 
     // Initialize the velocity
     mVelX = 2;
@@ -37,24 +39,30 @@ ThreatRedFish::ThreatRedFish()
 }
 void ThreatRedFish::move()
 {
+    ++frame;
+    if (frame / 16 >= 2)
+    {
+        frame = 0;
+    }
+
     cnt++;
     if (cnt == 500 && NUM_OF_CHARACTER != NUM_MINIONS_CHOOSE)
     {
         if (rand() % 2 == 0)
         {
-            flipRedFish = SDL_FLIP_HORIZONTAL;
+            flipFish = SDL_FLIP_HORIZONTAL;
         }
         else
         {
-            flipRedFish = SDL_FLIP_NONE;
+            flipFish = SDL_FLIP_NONE;
         }
         cnt = 0;
     }
     // Move the dot left or right
-    mPosX -= mVelX * (flipRedFish == SDL_FLIP_NONE ? 1 : -1);
+    mPosX -= mVelX * (flipFish == SDL_FLIP_NONE ? 1 : -1);
 
     // If the dot went too far to the left or right
-    if (mPosX + RedFish_WIDTH < 0)
+    if (mPosX + Fish_WIDTH < 0)
     {
         if (NUM_OF_CHARACTER == NUM_MINIONS_CHOOSE)
         {
@@ -62,16 +70,16 @@ void ThreatRedFish::move()
         }
 
         // Move back
-        mPosX = rand() % 2 == 0 ? 0 - RedFish_WIDTH : LEVEL_WIDTH;
-        if (mPosX == 0 - RedFish_WIDTH)
+        mPosX = rand() % 2 == 0 ? 0 - Fish_WIDTH : LEVEL_WIDTH;
+        if (mPosX == 0 - Fish_WIDTH)
         {
-            flipRedFish = SDL_FLIP_HORIZONTAL;
+            flipFish = SDL_FLIP_HORIZONTAL;
         }
         else
         {
-            flipRedFish = SDL_FLIP_NONE;
+            flipFish = SDL_FLIP_NONE;
         }
-        mPosY = rand() % (LEVEL_HEIGHT - RedFish_HETGHT);
+        mPosY = rand() % (LEVEL_HEIGHT - Fish_HETGHT);
     }
     if (mPosX > LEVEL_WIDTH)
     {
@@ -81,18 +89,18 @@ void ThreatRedFish::move()
         }
 
         // Move back
-        mPosX = rand() % 2 == 0 ? 0 - RedFish_WIDTH : LEVEL_WIDTH;
-        if (mPosX == 0 - RedFish_WIDTH)
+        mPosX = rand() % 2 == 0 ? 0 - Fish_WIDTH : LEVEL_WIDTH;
+        if (mPosX == 0 - Fish_WIDTH)
         {
-            flipRedFish = SDL_FLIP_HORIZONTAL;
+            flipFish = SDL_FLIP_HORIZONTAL;
         }
         else
         {
-            flipRedFish = SDL_FLIP_NONE;
+            flipFish = SDL_FLIP_NONE;
         }
-        mPosY = rand() % (LEVEL_HEIGHT - RedFish_HETGHT);
+        mPosY = rand() % (LEVEL_HEIGHT - Fish_HETGHT);
     }
-    locationRedFish = {mPosX, mPosY, RedFish_WIDTH, RedFish_HETGHT};
+    locationFish = {mPosX, mPosY, Fish_WIDTH, Fish_HETGHT};
 
     // // Move the dot up or down
     // mPosY += mVelY;
@@ -120,14 +128,10 @@ void ThreatRedFish::render(int camX, int camY, SDL_Rect *clip, SDL_RendererFlip 
         cout << "khong load duoc gTextureTextLevel" << endl;
     }
 
-    gTextureTextLevel.render(camX + (RedFish_WIDTH - gTextureTextLevel.getWidth()) / 2, camY + RedFish_HETGHT + 3);
+    gTextureTextLevel.render(camX + (clipWIDTH - gTextureTextLevel.getWidth()) / 2, camY + clipHEIGHT + 3);
     SDL_Rect *currentClip = &gRedFishClips[frame / 16];
-    gRedFishTexture.render(camX, camY, currentClip, 0.0, NULL, flipRedFish);
-    ++frame;
-    if (frame / 16 >= 2)
-    {
-        frame = 0;
-    }
+    gRedFishTexture.render(camX, camY, currentClip, 0.0, NULL, flipFish);
+    Fish_HETGHT = int(frame / 16) == 1 ? 51 : 68;
 }
 
 int ThreatRedFish::getPosX()
@@ -142,7 +146,7 @@ int ThreatRedFish::getPosY()
 
 SDL_Rect ThreatRedFish::getLocation()
 {
-    return locationRedFish;
+    return locationFish;
 }
 
 int ThreatRedFish::getLevel()
@@ -152,7 +156,7 @@ int ThreatRedFish::getLevel()
 
 SDL_RendererFlip ThreatRedFish::getFlip()
 {
-    return flipRedFish;
+    return flipFish;
 }
 
 void ThreatRedFish::setNumOfCharacter(int x)
@@ -177,5 +181,21 @@ void ThreatRedFish::setPosY(int y)
 
 void ThreatRedFish::setFlip(SDL_RendererFlip xFlip)
 {
-    flipRedFish = xFlip;
+    flipFish = xFlip;
+}
+
+void ThreatRedFish::characterReset()
+{
+    // Initialize the offsets
+    mPosX = rand() % 2 == 0 ? 0 - Fish_WIDTH : LEVEL_WIDTH;
+    if (mPosX == 0 - Fish_WIDTH)
+    {
+        flipFish = SDL_FLIP_HORIZONTAL;
+    }
+    else
+    {
+        flipFish = SDL_FLIP_NONE;
+    }
+    mPosY = rand() % (LEVEL_HEIGHT - Fish_HETGHT);
+    locationFish = {mPosX, mPosY, Fish_WIDTH, Fish_HETGHT};
 }

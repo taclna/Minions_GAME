@@ -73,7 +73,7 @@ void checkCharactersCollision()
 {
     memset(checkDead, false, sizeof(checkDead));
 
-    for (int i = 1; i <= NUM_CHARACTERS; i++)
+    for (int i = 0; i <= NUM_CHARACTERS; i++)
     {
         for (int j = i + 1; j <= NUM_CHARACTERS; j++)
         {

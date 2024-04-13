@@ -11,6 +11,8 @@ LTexture::LTexture()
     mTexture = NULL;
     mWidth = 0;
     mHeight = 0;
+    mPosX = 0;
+    mPosY = 0;
 }
 
 LTexture::~LTexture()
@@ -117,6 +119,8 @@ void LTexture::setAlpha(Uint8 alpha)
 
 void LTexture::render(int x, int y, SDL_Rect *clip, double angle, SDL_Point *center, SDL_RendererFlip flip)
 {
+    mPosX = x;
+    mPosY = y;
     // Set rendering space and render to screen
     SDL_Rect renderQuad = {x, y, mWidth, mHeight};
 
@@ -151,4 +155,14 @@ void LTexture::free()
         mWidth = 0;
         mHeight = 0;
     }
+}
+
+int LTexture::getPosX()
+{
+    return mPosX;
+}
+
+int LTexture::getPosY()
+{
+    return mPosY;
 }

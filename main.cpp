@@ -7,9 +7,10 @@
 #include "Characters.h"
 #include "Collision.h"
 #include "Skill.h"
+#include "GameOver.h"
 
 int levelMinions = 1;
-void untilQuit()
+void gamePlay()
 {
     bool quit = false;
 
@@ -46,8 +47,15 @@ void untilQuit()
 
         // Update screen
         SDL_RenderPresent(gRenderer);
+
         setCharacter();
+
         checkCharactersCollision();
+
+        if (checkGameOver())
+        {
+            quit = true;
+        }
     }
 }
 
@@ -71,7 +79,7 @@ int main(int argc, char *args[])
             setMinionsAnimation();
             setRedFishAnimation();
 
-            untilQuit();
+            gamePlay();
             // Main loop flag
         }
     }

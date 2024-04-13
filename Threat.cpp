@@ -2,17 +2,17 @@
 Threat::Threat()
 {
     // Initialize the offsets
-    mPosX = rand() % 2 == 0 ? 0 - BlueFish_WIDTH : LEVEL_WIDTH;
-    if (mPosX == 0 - BlueFish_WIDTH)
+    mPosX = rand() % 2 == 0 ? 0 - Fish_WIDTH : LEVEL_WIDTH;
+    if (mPosX == 0 - Fish_WIDTH)
     {
-        flipBlueFish = SDL_FLIP_HORIZONTAL;
+        flipFish = SDL_FLIP_HORIZONTAL;
     }
     else
     {
-        flipBlueFish = SDL_FLIP_NONE;
+        flipFish = SDL_FLIP_NONE;
     }
-    mPosY = rand() % (LEVEL_HEIGHT - BlueFish_HETGHT);
-    locationBlueFish = {mPosX, mPosY, BlueFish_WIDTH, BlueFish_HETGHT};
+    mPosY = rand() % (LEVEL_HEIGHT - Fish_HETGHT);
+    locationFish = {mPosX, mPosY, Fish_WIDTH, Fish_HETGHT};
 
     // Initialize the velocity
     mVelX = 1;
@@ -29,55 +29,55 @@ void Threat::move()
     {
         if (rand() % 2 == 0)
         {
-            flipBlueFish = SDL_FLIP_HORIZONTAL;
+            flipFish = SDL_FLIP_HORIZONTAL;
         }
         else
         {
-            flipBlueFish = SDL_FLIP_NONE;
+            flipFish = SDL_FLIP_NONE;
         }
         cnt = 0;
     }
     // Move the dot left or right
-    mPosX -= mVelX * (flipBlueFish == SDL_FLIP_NONE ? 1 : -1);
+    mPosX -= mVelX * (flipFish == SDL_FLIP_NONE ? 1 : -1);
 
     // If the dot went too far to the left or right
-    if (mPosX + BlueFish_WIDTH < 0)
+    if (mPosX + Fish_WIDTH < 0)
     {
         // Move back
         if (NUM_OF_CHARACTER == NUM_MINIONS_CHOOSE)
         {
             NUM_MINIONS_CHOOSE = -1;
         }
-        mPosX = rand() % 2 == 0 ? 0 - BlueFish_WIDTH : LEVEL_WIDTH;
-        if (mPosX == 0 - BlueFish_WIDTH)
+        mPosX = rand() % 2 == 0 ? 0 - Fish_WIDTH : LEVEL_WIDTH;
+        if (mPosX == 0 - Fish_WIDTH)
         {
-            flipBlueFish = SDL_FLIP_HORIZONTAL;
+            flipFish = SDL_FLIP_HORIZONTAL;
         }
         else
         {
-            flipBlueFish = SDL_FLIP_NONE;
+            flipFish = SDL_FLIP_NONE;
         }
-        mPosY = rand() % (LEVEL_HEIGHT - BlueFish_HETGHT);
+        mPosY = rand() % (LEVEL_HEIGHT - Fish_HETGHT);
     }
     if (mPosX > LEVEL_WIDTH)
     {
         // Move back
-        mPosX = rand() % 2 == 0 ? 0 - BlueFish_WIDTH : LEVEL_WIDTH;
+        mPosX = rand() % 2 == 0 ? 0 - Fish_WIDTH : LEVEL_WIDTH;
         if (NUM_OF_CHARACTER == NUM_MINIONS_CHOOSE)
         {
             NUM_MINIONS_CHOOSE = -1;
         }
-        if (mPosX == 0 - BlueFish_WIDTH)
+        if (mPosX == 0 - Fish_WIDTH)
         {
-            flipBlueFish = SDL_FLIP_HORIZONTAL;
+            flipFish = SDL_FLIP_HORIZONTAL;
         }
         else
         {
-            flipBlueFish = SDL_FLIP_NONE;
+            flipFish = SDL_FLIP_NONE;
         }
-        mPosY = rand() % (LEVEL_HEIGHT - BlueFish_HETGHT);
+        mPosY = rand() % (LEVEL_HEIGHT - Fish_HETGHT);
     }
-    locationBlueFish = {mPosX, mPosY, BlueFish_WIDTH, BlueFish_HETGHT};
+    locationFish = {mPosX, mPosY, Fish_WIDTH, Fish_HETGHT};
 
     // // Move the dot up or down
     // mPosY += mVelY;
@@ -105,8 +105,8 @@ void Threat::render(int camX, int camY, SDL_Rect *clip, SDL_RendererFlip flip)
         cout << "khong load duoc gTextureTextLevel" << endl;
     }
 
-    gTextureTextLevel.render(camX + (BlueFish_WIDTH - gTextureTextLevel.getWidth()) / 2, camY + BlueFish_HETGHT + 3);
-    gBlueFishTexture.render(camX, camY, clip, 0.0, NULL, flipBlueFish);
+    gTextureTextLevel.render(camX + (Fish_WIDTH - gTextureTextLevel.getWidth()) / 2, camY + Fish_HETGHT + 3);
+    gBlueFishTexture.render(camX, camY, clip, 0.0, NULL, flipFish);
 }
 
 int Threat::getPosX()
@@ -121,7 +121,7 @@ int Threat::getPosY()
 
 SDL_Rect Threat::getLocation()
 {
-    return locationBlueFish;
+    return locationFish;
 }
 
 int Threat::getLevel()
@@ -131,7 +131,7 @@ int Threat::getLevel()
 
 SDL_RendererFlip Threat::getFlip()
 {
-    return flipBlueFish;
+    return flipFish;
 }
 
 void Threat::setNumOfCharacter(int x)
@@ -156,5 +156,21 @@ void Threat::setPosY(int y)
 
 void Threat::setFlip(SDL_RendererFlip xFlip)
 {
-    flipBlueFish = xFlip;
+    flipFish = xFlip;
+}
+
+void Threat::characterReset()
+{
+    // Initialize the offsets
+    mPosX = rand() % 2 == 0 ? 0 - Fish_WIDTH : LEVEL_WIDTH;
+    if (mPosX == 0 - Fish_WIDTH)
+    {
+        flipFish = SDL_FLIP_HORIZONTAL;
+    }
+    else
+    {
+        flipFish = SDL_FLIP_NONE;
+    }
+    mPosY = rand() % (LEVEL_HEIGHT - Fish_HETGHT);
+    locationFish = {mPosX, mPosY, Fish_WIDTH, Fish_HETGHT};
 }

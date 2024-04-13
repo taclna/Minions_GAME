@@ -29,9 +29,11 @@ public:
 
     int getNumOfCharacter();
 
+    void characterReset();
+
 private:
-    int BlueFish_WIDTH = 119;
-    int BlueFish_HETGHT = 116;
+    int Fish_WIDTH = 119;
+    int Fish_HETGHT = 116;
 
     // The X and Y offsets of the dot
     int mPosX, mPosY;
@@ -41,11 +43,11 @@ private:
 
     int cnt;
 
-    SDL_RendererFlip flipBlueFish;
+    SDL_RendererFlip flipFish;
 
     int level = 10;
 
-    SDL_Rect locationBlueFish;
+    SDL_Rect locationFish;
 
     int NUM_OF_CHARACTER;
 

@@ -28,12 +28,14 @@ public:
     SDL_RendererFlip getFlip();
 
     void setNumOfCharacter(int x);
-
     int getNumOfCharacter();
 
+    void characterReset();
+
 private:
-    const int RedFish_WIDTH = 72;
-    const int RedFish_HETGHT = 72;
+    int Fish_WIDTH = 72;
+    int Fish_HETGHT = 68;
+    const int level = 5;
 
     // The X and Y offsets of the dot
     int mPosX, mPosY;
@@ -41,13 +43,11 @@ private:
     // The velocity of the dot
     int mVelX, mVelY;
 
-    SDL_RendererFlip flipRedFish;
+    SDL_RendererFlip flipFish;
     int cnt;
     int frame;
 
-    int level = 5;
-
-    SDL_Rect locationRedFish;
+    SDL_Rect locationFish;
 
     int NUM_OF_CHARACTER;
 
