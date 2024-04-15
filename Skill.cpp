@@ -70,9 +70,13 @@ void chooseThreat()
                 case SDLK_TAB:
                     ++NUM_OF_CHARACTER;
                     break;
-                case SDLK_q:
+                case SDLK_RETURN:
                     NUM_MINIONS_CHOOSE = validThreat[NUM_OF_CHARACTER];
                     MinionsCometoThreat();
+                    quitChooseThreat = true;
+                    quit = true;
+                    break;
+                case SDLK_q:
                     quitChooseThreat = true;
                     quit = true;
                     break;
@@ -119,6 +123,8 @@ void handleSkillEvent(SDL_Event &e)
                 chooseThreat();
             }
             break;
+        case SDLK_q:
+            NUM_MINIONS_CHOOSE = -1;
         }
     }
 }

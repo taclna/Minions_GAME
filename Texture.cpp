@@ -5,6 +5,9 @@ LTexture gBGTexture;
 LTexture gBlueFishTexture;
 LTexture gRedFishTexture;
 LTexture gBlackBTexture;
+LTexture gGreyBTexture;
+LTexture gMenuBackTexture;
+
 LTexture::LTexture()
 {
     // Initialize

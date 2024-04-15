@@ -16,6 +16,8 @@ const int SCREEN_HEIGHT = 756;
 
 extern int levelMinions;
 
+extern int timeStartedGame;
+
 extern SDL_Window *gWindow;
 
 // The window renderer
@@ -25,6 +27,8 @@ extern TTF_Font *gFontTextLevel;
 
 extern SDL_Color colorRed;
 extern SDL_Color colorYellow;
+extern SDL_Color colorBlack;
+extern SDL_Color colorWhite;
 
 extern int NUM_MINIONS_CHOOSE;
 
@@ -47,4 +51,11 @@ struct rectLevel
         level = mLevel;
         Flip = mFlip;
     }
+};
+
+enum
+{
+    NUM_PLAY_MENU,
+    NUM_HOW_TO_PLAY_MENU,
+    NUM_EXIT_MENU
 };

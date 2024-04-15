@@ -102,6 +102,18 @@ bool loadMedia()
         success = false;
     }
 
+    if (!gGreyBTexture.loadFromFile("Data/PrimitiveEra/greyBack.png"))
+    {
+        cout << "Failed to load grey background texture!\n";
+        success = false;
+    }
+
+    if (!gMenuBackTexture.loadFromFile("Data/PrimitiveEra/menu.png"))
+    {
+        cout << "Failed to load menu background texture!\n";
+        success = false;
+    }
+
     return success;
 }
 
@@ -113,6 +125,8 @@ void close()
     gBlueFishTexture.free();
     gRedFishTexture.free();
     gBlackBTexture.free();
+    gGreyBTexture.free();
+    gMenuBackTexture.free();
 
     // Destroy window
     SDL_DestroyRenderer(gRenderer);

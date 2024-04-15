@@ -8,6 +8,7 @@
 #include "Collision.h"
 #include "Skill.h"
 #include "GameOver.h"
+#include "Menu.h"
 
 int levelMinions = 1;
 void gamePlay()
@@ -79,7 +80,11 @@ int main(int argc, char *args[])
             setMinionsAnimation();
             setRedFishAnimation();
 
-            gamePlay();
+            if (checkMouseMenu() == NUM_PLAY_MENU)
+            {
+                reset();
+                gamePlay();
+            }
             // Main loop flag
         }
     }

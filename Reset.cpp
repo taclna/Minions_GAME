@@ -15,5 +15,8 @@ void resetCharacter()
 
 void reset()
 {
+    timeStartedGame = SDL_GetTicks();
+    NUM_MINIONS_CHOOSE = -1;
+
     resetCharacter();
 }

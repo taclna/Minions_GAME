@@ -9,11 +9,18 @@ vector<int> validThreat;
 int NUM_CHARACTERS = 0;
 void setNumThreat()
 {
-    if (SDL_GetTicks() >= 10000)
+    if (SDL_GetTicks() - timeStartedGame >= 10000)
     {
         NUM_RED_FISH = 10;
         NUM_BLUE_FISH = 5;
-        levelMinions = 100;
+        levelMinions = 9;
+        return;
+    }
+    if (SDL_GetTicks() - timeStartedGame >= 0)
+    {
+        NUM_RED_FISH = 6;
+        NUM_BLUE_FISH = 2;
+        levelMinions = 1;
         return;
     }
 }

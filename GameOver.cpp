@@ -1,14 +1,14 @@
 #include "GameOver.h"
 
 string textGameOver = "GAME OVER";
-string textPlayAgain = "- PLAY AGAIN";
-string textExit = "- EXIT";
+string textPlayAgain = "PLAY AGAIN";
+string textExit = "EXIT";
 
 TTF_Font *gFontTextGameOver = NULL;
 TTF_Font *gFontTextMenu = NULL;
 
-SDL_Color colorTextPlayAgain = colorRed;
-SDL_Color colorTextExit = colorRed;
+SDL_Color colorTextPlayAgain = colorWhite;
+SDL_Color colorTextExit = colorWhite;
 
 LTexture gTextureTextGameOver;
 LTexture gTextureTextPlayAgain;
@@ -53,6 +53,7 @@ bool checkIn(int &mPosX, int &mPosY, LTexture &gTextureCheckIn)
 
 bool checkPlayAgain()
 {
+    // true = playagain, false = exit
     bool quit = false;
 
     // Event handler
@@ -74,22 +75,16 @@ bool checkPlayAgain()
 
             case SDL_MOUSEMOTION:
                 mousePosX = e.motion.x, mousePosY = e.motion.y;
+                colorTextPlayAgain = colorWhite;
+                colorTextExit = colorWhite;
+
                 if (checkIn(mousePosX, mousePosY, gTextureTextPlayAgain))
                 {
                     colorTextPlayAgain = colorYellow;
                 }
-                else
-                {
-                    colorTextPlayAgain = colorRed;
-                }
-
                 if (checkIn(mousePosX, mousePosY, gTextureTextExit))
                 {
                     colorTextExit = colorYellow;
-                }
-                else
-                {
-                    colorTextExit = colorRed;
                 }
                 break;
 
@@ -104,11 +99,14 @@ bool checkPlayAgain()
                     return false;
                 }
                 break;
+            case SDL_KEYDOWN:
+                if (e.key.keysym.sym == SDLK_SPACE)
+                {
+                    return true;
+                }
+                break;
             }
         }
-        gTextureTextGameOver.free();
-        gTextureTextPlayAgain.free();
-        gTextureTextExit.free();
 
         renderScreenGameOver();
     }
@@ -123,9 +121,20 @@ bool checkGameOver()
         if (checkPlayAgain())
         {
             reset();
+
+            gTextureTextGameOver.free();
+            gTextureTextPlayAgain.free();
+            gTextureTextExit.free();
+
             return false;
         }
+        gTextureTextGameOver.free();
+        gTextureTextPlayAgain.free();
+        gTextureTextExit.free();
         return true;
     }
+    gTextureTextGameOver.free();
+    gTextureTextPlayAgain.free();
+    gTextureTextExit.free();
     return false;
 }
