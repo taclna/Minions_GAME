@@ -80,10 +80,19 @@ int main(int argc, char *args[])
             setMinionsAnimation();
             setRedFishAnimation();
 
-            if (checkMouseMenu() == NUM_PLAY_MENU)
+            int SCREEN_NOW = checkMouseMenu();
+            while (SCREEN_NOW != NUM_EXIT_MENU)
             {
-                reset();
-                gamePlay();
+                if (SCREEN_NOW == NUM_PLAY_MENU)
+                {
+                    reset();
+                    gamePlay();
+                    break;
+                }
+                else
+                {
+                    SCREEN_NOW = showHowToPlay();
+                }
             }
             // Main loop flag
         }

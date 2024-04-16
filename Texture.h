@@ -55,3 +55,4 @@ extern LTexture gRedFishTexture;
 extern LTexture gBlackBTexture;
 extern LTexture gGreyBTexture;
 extern LTexture gMenuBackTexture;
+extern LTexture gHowToPlayTexture;

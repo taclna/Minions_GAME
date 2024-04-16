@@ -114,6 +114,12 @@ bool loadMedia()
         success = false;
     }
 
+    if (!gHowToPlayTexture.loadFromFile("Data/PrimitiveEra/howtoplay/howtoplay.png"))
+    {
+        cout << "Failed to load how to play texture!\n";
+        success = false;
+    }
+
     return success;
 }
 
@@ -127,6 +133,7 @@ void close()
     gBlackBTexture.free();
     gGreyBTexture.free();
     gMenuBackTexture.free();
+    gHowToPlayTexture.free();
 
     // Destroy window
     SDL_DestroyRenderer(gRenderer);

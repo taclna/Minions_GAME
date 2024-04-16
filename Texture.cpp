@@ -7,6 +7,7 @@ LTexture gRedFishTexture;
 LTexture gBlackBTexture;
 LTexture gGreyBTexture;
 LTexture gMenuBackTexture;
+LTexture gHowToPlayTexture;
 
 LTexture::LTexture()
 {
