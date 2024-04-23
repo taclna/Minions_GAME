@@ -40,6 +40,8 @@ public:
 
     void characterReset();
 
+    int getType();
+
 private:
     // The X and Y offsets of the dot
     int mPosX, mPosY;
@@ -56,5 +58,7 @@ private:
 
     SDL_Rect locationMinions;
 
-    int level = 1;
+    int level = 0;
+
+    int type = 0;
 };

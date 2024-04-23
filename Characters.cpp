@@ -9,18 +9,22 @@ vector<int> validThreat;
 int NUM_CHARACTERS = 0;
 void setNumThreat()
 {
-    if (SDL_GetTicks() - timeStartedGame >= 10000)
+    if (YEAR >= 10)
+    {
+        NUM_RED_FISH = 8;
+        NUM_BLUE_FISH = 7;
+        return;
+    }
+    if (YEAR >= 5)
     {
         NUM_RED_FISH = 10;
         NUM_BLUE_FISH = 5;
-        levelMinions = 9;
         return;
     }
-    if (SDL_GetTicks() - timeStartedGame >= 0)
+    if (YEAR >= 0)
     {
         NUM_RED_FISH = 6;
         NUM_BLUE_FISH = 2;
-        levelMinions = 1;
         return;
     }
 }
@@ -185,11 +189,11 @@ bool checkValidThreat(rectLevel a)
 void setCharacter()
 {
     validThreat.clear();
-    Character[0] = {dot.getLocation(), dot.getLevel(), dot.getFlip()};
+    Character[0] = {dot.getLocation(), dot.getLevel(), dot.getFlip(), dot.getType()};
     NUM_CHARACTERS = 0;
     for (int i = 0; i < NUM_RED_FISH; i++)
     {
-        Character[++NUM_CHARACTERS] = {RedFish[i].getLocation(), RedFish[i].getLevel(), RedFish[i].getFlip()};
+        Character[++NUM_CHARACTERS] = {RedFish[i].getLocation(), RedFish[i].getLevel(), RedFish[i].getFlip(), RedFish[i].getType()};
         RedFish[i].setNumOfCharacter(NUM_CHARACTERS);
         if (checkValidThreat(Character[NUM_CHARACTERS]))
         {
@@ -198,7 +202,7 @@ void setCharacter()
     }
     for (int i = 0; i < NUM_BLUE_FISH; i++)
     {
-        Character[++NUM_CHARACTERS] = {BlueFish[i].getLocation(), BlueFish[i].getLevel(), BlueFish[i].getFlip()};
+        Character[++NUM_CHARACTERS] = {BlueFish[i].getLocation(), BlueFish[i].getLevel(), BlueFish[i].getFlip(), BlueFish[i].getType()};
         BlueFish[i].setNumOfCharacter(NUM_CHARACTERS);
         if (checkValidThreat(Character[NUM_CHARACTERS]))
         {

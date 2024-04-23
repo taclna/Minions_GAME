@@ -35,6 +35,8 @@ ThreatRedFish::ThreatRedFish()
     cnt = 0;
     frame = 0;
 
+    type = 5;
+
     textLevel = "LEVEL.  5";
 }
 void ThreatRedFish::move()
@@ -117,18 +119,18 @@ void ThreatRedFish::render(int camX, int camY, SDL_Rect *clip, SDL_RendererFlip 
 {
     if (levelMinions >= level)
     {
-        textColor = {0, 205, 0};
+        textColor = colorGreen;
     }
     else
     {
-        textColor = {255, 0, 0};
+        textColor = colorRed;
     }
     if (!gTextureTextLevel.loadFromRenderedText(gFontTextLevel, textLevel, textColor))
     {
-        cout << "khong load duoc gTextureTextLevel" << endl;
+        cout << "khong load duoc redfish gTextureTextLevel" << endl;
     }
 
-    if (timeStartedGame != -1)
+    if (timeStartedGame != 0 && NUM_MINIONS_CHOOSE != NUM_OF_CHARACTER)
         gTextureTextLevel.render(camX + (clipWIDTH - gTextureTextLevel.getWidth()) / 2, camY + clipHEIGHT + 3);
     SDL_Rect *currentClip = &gRedFishClips[frame / 16];
     gRedFishTexture.render(camX, camY, currentClip, 0.0, NULL, flipFish);
@@ -199,4 +201,9 @@ void ThreatRedFish::characterReset()
     }
     mPosY = rand() % (LEVEL_HEIGHT - Fish_HETGHT);
     locationFish = {mPosX, mPosY, Fish_WIDTH, Fish_HETGHT};
+}
+
+int ThreatRedFish::getType()
+{
+    return type;
 }

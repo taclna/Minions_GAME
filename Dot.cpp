@@ -181,3 +181,8 @@ void Dot::characterReset()
 
     locationMinions = {mPosX, mPosY, DOT_WIDTH, DOT_HEIGHT};
 }
+
+int Dot::getType()
+{
+    return type;
+}

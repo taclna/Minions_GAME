@@ -75,6 +75,7 @@ void chooseThreat()
                     MinionsCometoThreat();
                     quitChooseThreat = true;
                     quit = true;
+                    timeChooseThreat = SDL_GetTicks();
                     break;
                 case SDLK_q:
                     quitChooseThreat = true;

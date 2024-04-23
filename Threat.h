@@ -1,6 +1,7 @@
 #pragma once
 #include "ALL.h"
 #include "Texture.h"
+#include "TimeAndLevel.h"
 class Threat
 {
 public:
@@ -29,6 +30,8 @@ public:
 
     int getNumOfCharacter();
 
+    int getType();
+
     void characterReset();
 
 private:
@@ -56,4 +59,6 @@ private:
     std::string textLevel;
 
     SDL_Color textColor;
+
+    int type;
 };

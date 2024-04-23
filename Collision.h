@@ -1,6 +1,7 @@
 #pragma once
 #include "ALL.h"
 #include "Characters.h"
+#include "TimeAndLevel.h"
 extern bool checkDead[1000];
 
 bool checkCollision(SDL_Rect a, SDL_Rect b);

@@ -1,6 +1,9 @@
 #pragma once
 #include "ALL.h"
 #include "Texture.h"
+#include "TimeAndLevel.h"
+#include "GameOver.h"
+#include "Menu.h"
 // The dimensions of the level
 // Starts up SDL and creates window
 bool init();

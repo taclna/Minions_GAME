@@ -133,7 +133,10 @@ void close()
     gBlackBTexture.free();
     gGreyBTexture.free();
     gMenuBackTexture.free();
-    gHowToPlayTexture.free();
+
+    freeGameOver();
+    freeMenu();
+    freeTimeAndLevel();
 
     // Destroy window
     SDL_DestroyRenderer(gRenderer);

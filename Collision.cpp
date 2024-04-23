@@ -73,15 +73,24 @@ void checkCharactersCollision()
 {
     memset(checkDead, false, sizeof(checkDead));
 
+    if (NUM_MINIONS_CHOOSE != -1)
+    {
+        Character[0].type = Character[NUM_MINIONS_CHOOSE].type;
+    }
+
     for (int i = 0; i <= NUM_CHARACTERS; i++)
     {
         for (int j = i + 1; j <= NUM_CHARACTERS; j++)
         {
-            if (Character[i].level < Character[j].level)
+            if (Character[i].level < Character[j].level && Character[i].type != Character[j].type)
             {
                 if (checkDeadCollision(Character[i], Character[j]))
                 {
                     checkDead[i] = true;
+                    if (j == NUM_MINIONS_CHOOSE)
+                    {
+                        levelMinions += 1;
+                    }
                 }
             }
         }

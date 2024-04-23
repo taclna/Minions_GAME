@@ -17,6 +17,9 @@ void reset()
 {
     timeStartedGame = SDL_GetTicks();
     NUM_MINIONS_CHOOSE = -1;
+    levelMinions = 0;
+    YEAR = 0;
+    oldYEAR = YEAR;
 
     resetCharacter();
 }

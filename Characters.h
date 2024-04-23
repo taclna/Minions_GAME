@@ -3,6 +3,7 @@
 #include "Dot.h"
 #include "Threat.h"
 #include "ThreatRedFish.h"
+#include "TimeAndLevel.h"
 
 const int maxNUM_RED_FISH = 100;
 const int maxNUM_BLUE_FISH = 100;

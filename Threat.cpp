@@ -20,6 +20,8 @@ Threat::Threat()
 
     cnt = 0;
 
+    type = 10;
+
     textLevel = "LEVEL.  10";
 }
 void Threat::move()
@@ -94,18 +96,18 @@ void Threat::render(int camX, int camY, SDL_Rect *clip, SDL_RendererFlip flip)
 {
     if (levelMinions >= level)
     {
-        textColor = {0, 205, 0};
+        textColor = colorGreen;
     }
     else
     {
-        textColor = {255, 0, 0};
+        textColor = colorRed;
     }
     if (!gTextureTextLevel.loadFromRenderedText(gFontTextLevel, textLevel, textColor))
     {
-        cout << "khong load duoc gTextureTextLevel" << endl;
+        cout << "khong load duoc threat gTextureTextLevel" << endl;
     }
 
-    if (timeStartedGame != -1)
+    if (timeStartedGame != 0 && NUM_MINIONS_CHOOSE != NUM_OF_CHARACTER)
         gTextureTextLevel.render(camX + (Fish_WIDTH - gTextureTextLevel.getWidth()) / 2, camY + Fish_HETGHT + 3);
     gBlueFishTexture.render(camX, camY, clip, 0.0, NULL, flipFish);
 }
@@ -174,4 +176,9 @@ void Threat::characterReset()
     }
     mPosY = rand() % (LEVEL_HEIGHT - Fish_HETGHT);
     locationFish = {mPosX, mPosY, Fish_WIDTH, Fish_HETGHT};
+}
+
+int Threat::getType()
+{
+    return type;
 }

@@ -35,14 +35,6 @@ void setHowToPlayAnimation()
     gHowToPlayClips[2].h = 756;
 }
 
-void freeTT()
-{
-    gFontMenu = NULL;
-
-    gTextPlayTexture.free();
-    gTextHowToPlayTexture.free();
-    gTextExitTextureMenu.free();
-}
 void setText()
 {
     gFontMenu = TTF_OpenFont("Data/Font/nihonium113.regular.ttf", 60);
@@ -174,4 +166,13 @@ void showMenu()
 {
 
     reset();
+}
+
+void freeMenu()
+{
+    gFontMenu = NULL;
+
+    gTextPlayTexture.free();
+    gTextHowToPlayTexture.free();
+    gTextExitTextureMenu.free();
 }

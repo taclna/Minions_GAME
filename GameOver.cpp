@@ -138,3 +138,12 @@ bool checkGameOver()
     gTextureTextExit.free();
     return false;
 }
+
+void freeGameOver()
+{
+    gTextureTextGameOver.free();
+    gTextureTextPlayAgain.free();
+    gTextureTextExit.free();
+    gFontTextGameOver = NULL;
+    gFontTextMenu = NULL;
+}

@@ -10,7 +10,6 @@
 #include "GameOver.h"
 #include "Menu.h"
 
-int levelMinions = 1;
 void gamePlay()
 {
     bool quit = false;
@@ -21,6 +20,7 @@ void gamePlay()
     // While application is running
     while (!quit)
     {
+        setLevel();
         setNumThreat();
         // Handle events on queue
         while (SDL_PollEvent(&e) != 0)
@@ -45,6 +45,8 @@ void gamePlay()
         gBGTexture.render(0, 0);
 
         charactersRender();
+
+        renderTimeLevel();
 
         // Update screen
         SDL_RenderPresent(gRenderer);

@@ -1,6 +1,7 @@
 #pragma once
 #include "ALL.h"
 #include "Texture.h"
+#include "TimeAndLevel.h"
 
 void setRedFishAnimation();
 class ThreatRedFish
@@ -29,6 +30,7 @@ public:
 
     void setNumOfCharacter(int x);
     int getNumOfCharacter();
+    int getType();
 
     void characterReset();
 
@@ -56,4 +58,6 @@ private:
     std::string textLevel;
 
     SDL_Color textColor;
+
+    int type;
 };

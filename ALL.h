@@ -14,10 +14,6 @@ const int LEVEL_HEIGHT = 756;
 const int SCREEN_WIDTH = 1080;
 const int SCREEN_HEIGHT = 756;
 
-extern int levelMinions;
-
-extern int timeStartedGame;
-
 extern SDL_Window *gWindow;
 
 // The window renderer
@@ -29,6 +25,7 @@ extern SDL_Color colorRed;
 extern SDL_Color colorYellow;
 extern SDL_Color colorBlack;
 extern SDL_Color colorWhite;
+extern SDL_Color colorGreen;
 
 extern int NUM_MINIONS_CHOOSE;
 
@@ -37,19 +34,22 @@ struct rectLevel
     SDL_Rect location;
     int level;
     SDL_RendererFlip Flip;
+    int type;
 
     rectLevel()
     {
         location = {0, 0, 0, 0};
         level = 0;
         Flip = SDL_FLIP_NONE;
+        type = -1;
     }
 
-    rectLevel(SDL_Rect mLocation, int mLevel, SDL_RendererFlip mFlip)
+    rectLevel(SDL_Rect mLocation, int mLevel, SDL_RendererFlip mFlip, int mType)
     {
         location = mLocation;
         level = mLevel;
         Flip = mFlip;
+        type = mType;
     }
 };
 
