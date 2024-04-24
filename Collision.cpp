@@ -52,7 +52,14 @@ bool checkDeadCollision(rectLevel a, rectLevel b)
     {
         if (a.Flip != b.Flip)
         {
-            return true;
+            if (b.Flip == SDL_FLIP_NONE)
+            {
+                return a.location.x <= b.location.x && a.location.x + a.location.w >= b.location.x;
+            }
+            else
+            {
+                return a.location.x <= b.location.x + b.location.w && a.location.x + a.location.w >= b.location.x + b.location.w;
+            }
         }
         else
         {

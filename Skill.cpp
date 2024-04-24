@@ -75,7 +75,7 @@ void chooseThreat()
                     MinionsCometoThreat();
                     quitChooseThreat = true;
                     quit = true;
-                    timeChooseThreat = SDL_GetTicks();
+                    nowTimeCoolDownSkill = SDL_GetTicks();
                     break;
                 case SDLK_q:
                     quitChooseThreat = true;
@@ -118,6 +118,10 @@ void handleSkillEvent(SDL_Event &e)
         switch (e.key.keysym.sym)
         {
         case SDLK_TAB:
+            if (SDL_GetTicks() - nowTimeCoolDownSkill < timeCoolDownSkill)
+            {
+                return;
+            }
             quit = false;
             while (!quit)
             {
@@ -125,7 +129,11 @@ void handleSkillEvent(SDL_Event &e)
             }
             break;
         case SDLK_q:
-            NUM_MINIONS_CHOOSE = -1;
+            if (NUM_MINIONS_CHOOSE != -1)
+            {
+                NUM_MINIONS_CHOOSE = -1;
+                nowTimeCoolDownSkill -= 2000;
+            }
         }
     }
 }

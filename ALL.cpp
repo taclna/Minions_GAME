@@ -8,4 +8,4 @@ SDL_Color colorRed = {255, 0, 0};
 SDL_Color colorYellow = {238, 238, 0};
 SDL_Color colorBlack = {0, 0, 0};
 SDL_Color colorWhite = {255, 255, 255};
-SDL_Color colorGreen = {0, 205, 0};
+SDL_Color colorGreen = {0, 190, 0};

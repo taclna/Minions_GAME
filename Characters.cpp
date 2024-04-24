@@ -11,8 +11,8 @@ void setNumThreat()
 {
     if (YEAR >= 10)
     {
-        NUM_RED_FISH = 8;
-        NUM_BLUE_FISH = 7;
+        NUM_RED_FISH = 30;
+        NUM_BLUE_FISH = 1;
         return;
     }
     if (YEAR >= 5)
