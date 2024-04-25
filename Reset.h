@@ -4,3 +4,4 @@
 #include "TimeAndLevel.h"
 
 void reset();
+void resetCharacter();

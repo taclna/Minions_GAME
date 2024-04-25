@@ -51,6 +51,9 @@ void renderTimeLevel()
         colorCooldown = colorRed;
     }
 
+    if (YEAR % 10 == 9)
+        checkYear = true;
+
     timeText << "YEAR: " << YEAR;
     levelText << "LEVEL: " << levelMinions;
     cooldownText << "COOLDOWN: " << COOLDOWN << "s";

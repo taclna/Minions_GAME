@@ -4,6 +4,8 @@
 #include "TimeAndLevel.h"
 #include "GameOver.h"
 #include "Menu.h"
+#include "GameWin.h"
+
 // The dimensions of the level
 // Starts up SDL and creates window
 bool init();

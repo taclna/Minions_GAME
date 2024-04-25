@@ -9,22 +9,22 @@ vector<int> validThreat;
 int NUM_CHARACTERS = 0;
 void setNumThreat()
 {
+    if (checkYear && YEAR % 10 == 0)
+    {
+        NUM_MINIONS_CHOOSE = -1;
+        checkYear = false;
+    }
+
     if (YEAR >= 10)
     {
         NUM_RED_FISH = 30;
         NUM_BLUE_FISH = 1;
         return;
     }
-    if (YEAR >= 5)
-    {
-        NUM_RED_FISH = 10;
-        NUM_BLUE_FISH = 5;
-        return;
-    }
     if (YEAR >= 0)
     {
-        NUM_RED_FISH = 6;
-        NUM_BLUE_FISH = 2;
+        NUM_RED_FISH = 8;
+        NUM_BLUE_FISH = 4;
         return;
     }
 }

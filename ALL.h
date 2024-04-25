@@ -28,6 +28,10 @@ extern SDL_Color colorWhite;
 extern SDL_Color colorGreen;
 
 extern int NUM_MINIONS_CHOOSE;
+extern bool checkYear;
+
+extern Uint32 YEAR_WIN;
+extern int SCREEN_NOW;
 
 struct rectLevel
 {
@@ -57,5 +61,7 @@ enum
 {
     NUM_PLAY_MENU,
     NUM_HOW_TO_PLAY_MENU,
-    NUM_EXIT_MENU
+    NUM_EXIT_MENU,
+    NUM_WIN,
+    NUM_COME_TO_MENU
 };

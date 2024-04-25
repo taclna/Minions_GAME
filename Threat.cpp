@@ -107,7 +107,7 @@ void Threat::render(int camX, int camY, SDL_Rect *clip, SDL_RendererFlip flip)
         cout << "khong load duoc threat gTextureTextLevel" << endl;
     }
 
-    if (timeStartedGame != 0 && NUM_MINIONS_CHOOSE != NUM_OF_CHARACTER)
+    if (SCREEN_NOW != NUM_COME_TO_MENU && NUM_MINIONS_CHOOSE != NUM_OF_CHARACTER)
         gTextureTextLevel.render(camX + (Fish_WIDTH - gTextureTextLevel.getWidth()) / 2, camY + Fish_HETGHT + 3);
     gBlueFishTexture.render(camX, camY, clip, 0.0, NULL, flipFish);
 }

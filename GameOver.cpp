@@ -122,20 +122,10 @@ bool checkGameOver()
         {
             reset();
 
-            gTextureTextGameOver.free();
-            gTextureTextPlayAgain.free();
-            gTextureTextExit.free();
-
             return false;
         }
-        gTextureTextGameOver.free();
-        gTextureTextPlayAgain.free();
-        gTextureTextExit.free();
         return true;
     }
-    gTextureTextGameOver.free();
-    gTextureTextPlayAgain.free();
-    gTextureTextExit.free();
     return false;
 }
 

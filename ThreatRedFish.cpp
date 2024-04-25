@@ -130,7 +130,7 @@ void ThreatRedFish::render(int camX, int camY, SDL_Rect *clip, SDL_RendererFlip 
         cout << "khong load duoc redfish gTextureTextLevel" << endl;
     }
 
-    if (timeStartedGame != 0 && NUM_MINIONS_CHOOSE != NUM_OF_CHARACTER)
+    if (SCREEN_NOW != NUM_COME_TO_MENU && NUM_MINIONS_CHOOSE != NUM_OF_CHARACTER)
         gTextureTextLevel.render(camX + (clipWIDTH - gTextureTextLevel.getWidth()) / 2, camY + clipHEIGHT + 3);
     SDL_Rect *currentClip = &gRedFishClips[frame / 16];
     gRedFishTexture.render(camX, camY, currentClip, 0.0, NULL, flipFish);

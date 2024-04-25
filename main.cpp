@@ -9,6 +9,7 @@
 #include "Skill.h"
 #include "GameOver.h"
 #include "Menu.h"
+#include "GameWin.h"
 
 void gamePlay()
 {
@@ -29,6 +30,7 @@ void gamePlay()
             if (e.type == SDL_QUIT)
             {
                 quit = true;
+                SCREEN_NOW = NUM_EXIT_MENU;
             }
 
             handleSkillEvent(e);
@@ -58,6 +60,13 @@ void gamePlay()
         if (checkGameOver())
         {
             quit = true;
+            SCREEN_NOW = NUM_EXIT_MENU;
+        }
+
+        if (YEAR == YEAR_WIN)
+        {
+            quit = true;
+            SCREEN_NOW = NUM_WIN;
         }
     }
 }
@@ -82,14 +91,22 @@ int main(int argc, char *args[])
             setMinionsAnimation();
             setRedFishAnimation();
 
-            int SCREEN_NOW = checkMouseMenu();
+            SCREEN_NOW = checkMouseMenu();
             while (SCREEN_NOW != NUM_EXIT_MENU)
             {
                 if (SCREEN_NOW == NUM_PLAY_MENU)
                 {
                     reset();
                     gamePlay();
-                    break;
+                    if (SCREEN_NOW == NUM_WIN)
+                    {
+                        SCREEN_NOW = checkMouseGameWin();
+                        if (SCREEN_NOW == NUM_COME_TO_MENU)
+                        {
+                            reset();
+                            SCREEN_NOW = checkMouseMenu();
+                        }
+                    }
                 }
                 else
                 {

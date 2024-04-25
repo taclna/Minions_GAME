@@ -137,6 +137,7 @@ void close()
     freeGameOver();
     freeMenu();
     freeTimeAndLevel();
+    freeGameWin();
 
     // Destroy window
     SDL_DestroyRenderer(gRenderer);
