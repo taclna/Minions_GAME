@@ -29,6 +29,15 @@ void renderSkillScreen(int NUM_OF_CHARACTER)
         }
     }
 
+    // Render BigFish
+    for (int i = 0; i < NUM_BIG_FISH; i++)
+    {
+        if (BigFish[i].getNumOfCharacter() != NUM_OF_CHARACTER)
+        {
+            BigFish[i].render(BigFish[i].getPosX(), BigFish[i].getPosY());
+        }
+    }
+
     gBlackBTexture.render(0, 0);
     dot.render(dot.getPosX(), dot.getPosY());
     // Render RedFish
@@ -46,6 +55,15 @@ void renderSkillScreen(int NUM_OF_CHARACTER)
         if (BlueFish[i].getNumOfCharacter() == NUM_OF_CHARACTER)
         {
             BlueFish[i].render(BlueFish[i].getPosX(), BlueFish[i].getPosY());
+        }
+    }
+
+    // Render BlueFish
+    for (int i = 0; i < NUM_BIG_FISH; i++)
+    {
+        if (BigFish[i].getNumOfCharacter() == NUM_OF_CHARACTER)
+        {
+            BigFish[i].render(BigFish[i].getPosX(), BigFish[i].getPosY());
         }
     }
 

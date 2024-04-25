@@ -52,6 +52,7 @@ extern LTexture gDotTexture;
 extern LTexture gBGTexture;
 extern LTexture gBlueFishTexture;
 extern LTexture gRedFishTexture;
+extern LTexture gBigFishTexture;
 extern LTexture gBlackBTexture;
 extern LTexture gGreyBTexture;
 extern LTexture gMenuBackTexture;

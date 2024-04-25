@@ -33,6 +33,8 @@ extern bool checkYear;
 extern Uint32 YEAR_WIN;
 extern int SCREEN_NOW;
 
+extern Mix_Music *water;
+
 struct rectLevel
 {
     SDL_Rect location;

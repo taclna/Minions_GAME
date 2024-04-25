@@ -11,6 +11,10 @@ void resetCharacter()
     {
         BlueFish[i].characterReset();
     }
+    for (int i = 0; i < NUM_BIG_FISH; i++)
+    {
+        BigFish[i].characterReset();
+    }
 }
 
 void reset()

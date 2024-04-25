@@ -1,11 +1,9 @@
+for (int i = 0; i < NUM_BIG_FISH; i++)
 {
-    quit = false;
-    while (!quit)
+    Character[++NUM_CHARACTERS] = {BigFish[i].getLocation(), BigFish[i].getLevel(), BigFish[i].getFlip(), BigFish[i].getType()};
+    BigFish[i].setNumOfCharacter(NUM_CHARACTERS);
+    if (checkValidThreat(Character[NUM_CHARACTERS]))
     {
-        // check xem co an nut x k thi end game;
-
-        // while(pollevent) -> bat su kien xem no co boc bai k, neu co thi them bai vao
-
-        // neu danh bai xuong thi quit = true
+        validThreat.push_back(NUM_CHARACTERS);
     }
 }

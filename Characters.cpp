@@ -1,9 +1,13 @@
 #include "Characters.h"
-int NUM_RED_FISH = 6;
-int NUM_BLUE_FISH = 2;
+int NUM_RED_FISH = 3;
+int NUM_BLUE_FISH = 3;
+int NUM_BIG_FISH = 3;
+
 Dot dot;
 Threat BlueFish[maxNUM_BLUE_FISH];
 ThreatRedFish RedFish[maxNUM_RED_FISH];
+ThreatBigFish BigFish[maxNUM_BIG_FISH];
+
 rectLevel Character[1000];
 vector<int> validThreat;
 int NUM_CHARACTERS = 0;
@@ -15,16 +19,39 @@ void setNumThreat()
         checkYear = false;
     }
 
+    if (YEAR >= 90)
+    {
+        NUM_RED_FISH = 5;
+        NUM_BLUE_FISH = 5;
+        NUM_BIG_FISH = 10;
+        return;
+    }
+    if (YEAR >= 50)
+    {
+        NUM_RED_FISH = 14;
+        NUM_BLUE_FISH = 10;
+        NUM_BIG_FISH = 4;
+        return;
+    }
+    if (YEAR >= 20)
+    {
+        NUM_RED_FISH = 10;
+        NUM_BLUE_FISH = 2;
+        NUM_BIG_FISH = 5;
+        return;
+    }
     if (YEAR >= 10)
     {
         NUM_RED_FISH = 30;
         NUM_BLUE_FISH = 1;
+        NUM_BIG_FISH = 1;
         return;
     }
     if (YEAR >= 0)
     {
         NUM_RED_FISH = 8;
         NUM_BLUE_FISH = 4;
+        NUM_BIG_FISH = 0;
         return;
     }
 }
@@ -45,6 +72,13 @@ void charactersMove()
     {
 
         RedFish[i].move();
+    }
+
+    // move RedFish
+    for (int i = 0; i < NUM_BIG_FISH; i++)
+    {
+
+        BigFish[i].move();
     }
 }
 
@@ -76,7 +110,7 @@ void charactersRender()
                 RedFish[i].setFlip(dot.getFlip());
                 if (dot.getFlip() == SDL_FLIP_NONE)
                 {
-                    dot.setPosX(RedFish[i].getPosX() + RedFish[i].getLocation().h - dot.Minions_WIDTH);
+                    dot.setPosX(RedFish[i].getPosX() + RedFish[i].getLocation().w - dot.Minions_WIDTH);
                     dot.setPosY(RedFish[i].getPosY() + (RedFish[i].getLocation().h - dot.Minions_HEIGHT) / 2);
                     if (dot.getPosX() < 0)
                     {
@@ -134,7 +168,7 @@ void charactersRender()
                 BlueFish[i].setFlip(dot.getFlip());
                 if (dot.getFlip() == SDL_FLIP_NONE)
                 {
-                    dot.setPosX(BlueFish[i].getPosX() + BlueFish[i].getLocation().h - dot.Minions_WIDTH);
+                    dot.setPosX(BlueFish[i].getPosX() + BlueFish[i].getLocation().w - dot.Minions_WIDTH);
                     dot.setPosY(BlueFish[i].getPosY() + (BlueFish[i].getLocation().h - dot.Minions_HEIGHT) / 2);
                     if (dot.getPosX() < 0)
                     {
@@ -170,6 +204,66 @@ void charactersRender()
         }
         BlueFish[i].render(BlueFish[i].getPosX(), BlueFish[i].getPosY());
     }
+
+    // render BigFish
+    for (int i = 0; i < NUM_BIG_FISH; i++)
+    {
+        if (BigFish[i].getNumOfCharacter() == NUM_MINIONS_CHOOSE)
+        {
+            if (BigFish[i].getFlip() == dot.getFlip())
+            {
+                if (dot.getFlip() == SDL_FLIP_NONE)
+                {
+                    BigFish[i].setPosX(dot.getPosX() - BigFish[i].getLocation().w);
+                    BigFish[i].setPosY(dot.getPosY() - (BigFish[i].getLocation().h - dot.Minions_HEIGHT) / 2);
+                }
+                else if (dot.getFlip() == SDL_FLIP_HORIZONTAL)
+                {
+                    BigFish[i].setPosX(dot.getPosX() + dot.getLocation().w);
+                    BigFish[i].setPosY(dot.getPosY() - (BigFish[i].getLocation().h - dot.Minions_HEIGHT) / 2);
+                }
+            }
+            else
+            {
+                BigFish[i].setFlip(dot.getFlip());
+                if (dot.getFlip() == SDL_FLIP_NONE)
+                {
+                    dot.setPosX(BigFish[i].getPosX() + BigFish[i].getLocation().w - dot.Minions_WIDTH);
+                    dot.setPosY(BigFish[i].getPosY() + (BigFish[i].getLocation().h - dot.Minions_HEIGHT) / 2);
+                    if (dot.getPosX() < 0)
+                    {
+                        // Move back
+                        dot.setPosX(0);
+                    }
+                    else if (dot.getPosX() + dot.Minions_WIDTH > LEVEL_WIDTH)
+                    {
+                        dot.setPosX(LEVEL_WIDTH - dot.Minions_WIDTH);
+                    }
+
+                    BigFish[i].setPosX(dot.getPosX() - BigFish[i].getLocation().w);
+                    BigFish[i].setPosY(dot.getPosY() - (BigFish[i].getLocation().h - dot.Minions_HEIGHT) / 2);
+                }
+                else if (dot.getFlip() == SDL_FLIP_HORIZONTAL)
+                {
+                    dot.setPosX(BigFish[i].getPosX());
+                    dot.setPosY(BigFish[i].getPosY() + (BigFish[i].getLocation().h - dot.Minions_HEIGHT) / 2);
+                    if (dot.getPosX() < 0)
+                    {
+                        // Move back
+                        dot.setPosX(0);
+                    }
+                    else if (dot.getPosX() + dot.Minions_WIDTH > LEVEL_WIDTH)
+                    {
+                        dot.setPosX(LEVEL_WIDTH - dot.Minions_WIDTH);
+                    }
+
+                    BigFish[i].setPosX(dot.getPosX() + dot.getLocation().w);
+                    BigFish[i].setPosY(dot.getPosY() - (BigFish[i].getLocation().h - dot.Minions_HEIGHT) / 2);
+                }
+            }
+        }
+        BigFish[i].render(BigFish[i].getPosX(), BigFish[i].getPosY());
+    }
 }
 
 bool checkValidThreat(rectLevel a)
@@ -204,6 +298,15 @@ void setCharacter()
     {
         Character[++NUM_CHARACTERS] = {BlueFish[i].getLocation(), BlueFish[i].getLevel(), BlueFish[i].getFlip(), BlueFish[i].getType()};
         BlueFish[i].setNumOfCharacter(NUM_CHARACTERS);
+        if (checkValidThreat(Character[NUM_CHARACTERS]))
+        {
+            validThreat.push_back(NUM_CHARACTERS);
+        }
+    }
+    for (int i = 0; i < NUM_BIG_FISH; i++)
+    {
+        Character[++NUM_CHARACTERS] = {BigFish[i].getLocation(), BigFish[i].getLevel(), BigFish[i].getFlip(), BigFish[i].getType()};
+        BigFish[i].setNumOfCharacter(NUM_CHARACTERS);
         if (checkValidThreat(Character[NUM_CHARACTERS]))
         {
             validThreat.push_back(NUM_CHARACTERS);

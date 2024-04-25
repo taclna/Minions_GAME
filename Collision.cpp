@@ -124,4 +124,14 @@ void checkCharactersCollision()
             BlueFish[i].setPosX(SCREEN_WIDTH);
         }
     }
+    for (int i = 0; i < NUM_BIG_FISH; i++)
+    {
+        ++NUM_CHARACTERS_DEAD;
+        if (checkDead[NUM_CHARACTERS_DEAD])
+        {
+            if (NUM_CHARACTERS_DEAD == NUM_MINIONS_CHOOSE)
+                NUM_MINIONS_CHOOSE = -1;
+            BigFish[i].setPosX(SCREEN_WIDTH);
+        }
+    }
 }

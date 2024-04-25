@@ -4,12 +4,14 @@
 #include "Dot.h"
 #include "Threat.h"
 #include "ThreatRedFish.h"
+#include "ThreatBigFish.h"
 #include "Characters.h"
 #include "Collision.h"
 #include "Skill.h"
 #include "GameOver.h"
 #include "Menu.h"
 #include "GameWin.h"
+#include "Sound.h"
 
 void gamePlay()
 {
@@ -90,6 +92,10 @@ int main(int argc, char *args[])
             gFontTextLevel = TTF_OpenFont("Data/Font/Nihonium113.ttf", 13);
             setMinionsAnimation();
             setRedFishAnimation();
+
+            water = loadMusic("Data/Sound/water.mp3");
+            Mix_VolumeMusic(MIX_MAX_VOLUME / 20);
+            play(water);
 
             SCREEN_NOW = checkMouseMenu();
             while (SCREEN_NOW != NUM_EXIT_MENU)

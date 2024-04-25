@@ -59,6 +59,13 @@ bool init()
                     printf("SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError());
                     success = false;
                 }
+
+                // Initialize SDL_mixer
+                if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+                {
+                    printf("SDL_mixer could not initialize! SDL_mixer Error: %s\n",
+                           Mix_GetError());
+                }
             }
         }
     }
@@ -87,6 +94,12 @@ bool loadMedia()
     if (!gRedFishTexture.loadFromFile("Data/PrimitiveEra/redFish.png"))
     {
         printf("Failed to load blue fish texture!\n");
+        success = false;
+    }
+    // load bigfish texture
+    if (!gBigFishTexture.loadFromFile("Data/PrimitiveEra/bigFish1.png"))
+    {
+        printf("Failed to load big fish texture!\n");
         success = false;
     }
     // Load background texture
@@ -130,6 +143,7 @@ void close()
     gBGTexture.free();
     gBlueFishTexture.free();
     gRedFishTexture.free();
+    gBigFishTexture.free();
     gBlackBTexture.free();
     gGreyBTexture.free();
     gMenuBackTexture.free();
@@ -145,9 +159,11 @@ void close()
     gWindow = NULL;
     gRenderer = NULL;
     gFontTextLevel = NULL;
+    water = NULL;
 
     // Quit SDL subsystems
     TTF_Quit();
     IMG_Quit();
     SDL_Quit();
+    Mix_Quit();
 }

@@ -13,3 +13,5 @@ SDL_Color colorGreen = {0, 190, 0};
 bool checkYear = false;
 Uint32 YEAR_WIN = 100;
 int SCREEN_NOW = NUM_COME_TO_MENU;
+
+Mix_Music *water = NULL;
