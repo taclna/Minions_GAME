@@ -64,7 +64,6 @@ void gamePlay()
             quit = true;
             SCREEN_NOW = NUM_EXIT_MENU;
         }
-
         if (YEAR == YEAR_WIN)
         {
             quit = true;

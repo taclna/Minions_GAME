@@ -3,15 +3,15 @@
 void resetCharacter()
 {
     dot.characterReset();
-    for (int i = 0; i < NUM_RED_FISH; i++)
+    for (int i = 0; i < maxNUM_RED_FISH; i++)
     {
         RedFish[i].characterReset();
     }
-    for (int i = 0; i < NUM_BLUE_FISH; i++)
+    for (int i = 0; i < maxNUM_BLUE_FISH; i++)
     {
         BlueFish[i].characterReset();
     }
-    for (int i = 0; i < NUM_BIG_FISH; i++)
+    for (int i = 0; i < maxNUM_BIG_FISH; i++)
     {
         BigFish[i].characterReset();
     }

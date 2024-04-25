@@ -21,21 +21,21 @@ void setNumThreat()
 
     if (YEAR >= 90)
     {
-        NUM_RED_FISH = 5;
-        NUM_BLUE_FISH = 5;
+        NUM_RED_FISH = 20;
+        NUM_BLUE_FISH = 20;
         NUM_BIG_FISH = 10;
         return;
     }
     if (YEAR >= 50)
     {
         NUM_RED_FISH = 14;
-        NUM_BLUE_FISH = 10;
+        NUM_BLUE_FISH = 20;
         NUM_BIG_FISH = 4;
         return;
     }
     if (YEAR >= 20)
     {
-        NUM_RED_FISH = 10;
+        NUM_RED_FISH = 20;
         NUM_BLUE_FISH = 2;
         NUM_BIG_FISH = 5;
         return;
