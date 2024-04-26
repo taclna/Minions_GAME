@@ -8,4 +8,5 @@ extern LTexture gMenuTextTexture;
 extern LTexture gExitTextTexture;
 
 int checkMouseGameWin();
+void renderScreenGameWin();
 void freeGameWin();

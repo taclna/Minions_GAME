@@ -162,12 +162,6 @@ int checkMouseMenu()
     return 1903;
 }
 
-void showMenu()
-{
-
-    reset();
-}
-
 void freeMenu()
 {
     gFontMenu = NULL;

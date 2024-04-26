@@ -23,7 +23,7 @@ void setNumThreat()
     {
         NUM_RED_FISH = 20;
         NUM_BLUE_FISH = 20;
-        NUM_BIG_FISH = 10;
+        NUM_BIG_FISH = 20;
         return;
     }
     if (YEAR >= 50)

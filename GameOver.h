@@ -14,4 +14,5 @@ extern LTexture gTextureTextExit;
 
 bool checkIn(int &mPosX, int &mPosY, LTexture &gTextureCheckIn);
 bool checkGameOver();
+bool checkPlayAgain();
 void freeGameOver();

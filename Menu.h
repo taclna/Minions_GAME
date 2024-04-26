@@ -14,5 +14,6 @@ extern LTexture gTextExitTextureMenu;
 
 int checkMouseMenu();
 int showHowToPlay();
-void showMenu();
 void freeMenu();
+void renderScreenMenu();
+void renderScreenHowToPlay();
