@@ -12,8 +12,7 @@ Minions là trò chơi điều khiển nhân vật Minion, giúp nhân vật s�
 
 - Bước 1: Bấm vào phần "Code" màu xanh lá ở trên rồi bấm "Download ZIP" ở dưới cùng để tải game, hoặc có thể kéo code về từ trên github.
 - Bước 2: Extract file zip vừa tải về
-- Bước 3: Sử dụng CodeBlocks để mở file project Game.cbp( nhớ là cài đầy đủ các file SDL thì mới chơi được nhé)
-- Bước 4: Vào menu và bấm Play để chơi nào
+- Bước 3: Bấm vào file main.exe để chơi game
 
 **Mô tả về game**
 
