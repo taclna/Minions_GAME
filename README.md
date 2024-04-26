@@ -42,11 +42,19 @@ Sử dụng Q để thoát giao diện khi sử dụng skill hoặc không muố
   
   <img src="Data/PrimitiveEra/bigFish1.png" alt="GitHub" width="425" height="165">
 
+- Khi mở trò chơi lên, sẽ hiện giao diện Menu. Menu gồm nhân vật chính của chúng ta - Minion và các quái vật sẽ xuất hiện trong game di chuyển qua lại. Người chơi có thể di chuyển Minion xung quanh giao diện này. Hãy ấn How To Play để biết cách chơi nhé.
+
+  <img src="Data/image(ReadMe)/menu.png" alt="GitHub" width="1080" height="750">
+
+- Khi ấn Play hoặc xem hết How To Play, chúng ta sẽ đến giao diện chơi game của chúng ta.
+
+  <img src="Data/image(ReadMe)/giaodiengame.png" alt="GitHub" width="1080" height="750">
+
 - YEAR, LEVEL, COOLDOWN: là năm, level và thời gian hồi chiêu của Minion. Năm sẽ tăng mỗi 5s bắt đầu với năm 0, level của Minion sẽ tăng 2 level mỗi năm hoặc theo số lượng quái vật mà Minion tiêu diệt được khi đang điều khiển quái vật khác. Thời gian hồi chiêu của Minion là 20s, nếu chiêu chưa hồi xong COOLDOWN sẽ hiện màu đỏ, nếu chiêu hồi xong thì COOLDOWN sẽ hiện màu xanh lá. Vào các năm chia hết cho 10 (10, 20, 30,…) quái vật Minon đang điều khiển sẽ không còn bị Minion điều khiển nữa, hãy cẩn thận điều đó. Số lượng và chất lượng quái vật tăng dần theo mỗi năm, nếu như bạn không đạt level 100 để có thể sử dụng skill lên quái vật to nhất thì việc bạn phá đảo game gần như là không thể. Hãy tính toán để có thể phá đảo game.
 
 - Nếu như Minion bị quái vật khác ăn được, sẽ hiện giao diện Game Over. Ở giao diện Game Over, bạn sẽ có 2 lựa chọn là Play Again hoặc Exit, nhấn Play Again bạn sẽ bắt đầu chơi game lại từ đầu, nhấn Exit bạn sẽ thoát ra khỏi trò chơi.
 
-  <img src="Data/image(ReadMe)/gameover.png" alt="GitHub" width="1080" height="756">
+  <img src="Data/image(ReadMe)/gameover.png" alt="GitHub" width="1080" height="750">
 
 - Nếu như Minion thành công sống sót đến năm 100, thì bạn đã phá đảo game, khi ấy sẽ hiện giao diện Game Win. Ở giao diện Game Win, bạn sẽ có 3 lựa chọn là Play Again, Menu, hoặc Exit, nhấn Play Again bạn sẽ bắt đầu chơi game lại từ đầu, nhấn Menu bạn sẽ đến giao diện Menu của game, nhấn Exit bạn sẽ thoát ra khỏi trò chơi.
 
@@ -200,7 +208,8 @@ Sử dụng Q để thoát giao diện khi sử dụng skill hoặc không muố
 ## Kết luận
 
      - Ý tưởng của game được lấy cảm hứng từ bộ phim Minions (2015).
-     - Toàn bộ đồ họa được chụp màn hình từ trong phim và chuyển về pixel art.
-     - Mã nguồn tự phát triển từ con số 0.
+     - Đồ họa game được chụp màn hình từ trong phim và chuyển về pixel art bằng các app PixelMe, Adobe Photoshop.
+     - Âm thanh game được lấy từ Pixabay.com
+     - Mã nguồn tự phát triển.
      - Học được cách sử dụng C++ và SDL2 để tự tạo được một game cơ bản cho bản thân.
      - Biết cách chia nhỏ file + class để dễ quản lý dự án hơn.
