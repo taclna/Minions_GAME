@@ -22,40 +22,46 @@ Minions là trò chơi điều khiển nhân vật Minion, giúp nhân vật s�
 ### **Control**
 
 - Game có những tác vụ di chuyển lên xuống trái phải và sử dụng skill của Minion.
+
+<img src="Data/image(ReadMe)/wasd.png" alt="GitHub" width="60" height="60">  Là các nút di chuyển Minion lên, xuống, trái, phải.
   
-  <img src="image(ReadMe)/Move.png" alt="GitHub" width="50" height="50">  Là các nút di chuyển Minion lên, xuống, trái, phải.
-  
-<img src="image(ReadMe)/Mouse.png" alt="GitHub" width="50" height="50"> Sử dụng TAB để có thể sử dụng skill của Minion và chọn quái vật mình muốn theo. 
+<img src="Data/image(ReadMe)/tab.png" alt="GitHub" width="50" height="50"> Sử dụng TAB để có thể sử dụng skill của Minion và chọn quái vật mình muốn theo. 
 
 Sử dụng Q để thoát giao diện khi sử dụng skill hoặc không muốn điều khiển quái vật mình đã chọn nữa.
 ### **CÁC THÀNH PHẦN TRONG GAME**
 
 - Minion: Chính là nhân vật bạn điều khiển, gồm hình ảnh Minion vẫy đuôi dễ thương.
   
-  <img src="picture/airplane2.png " alt="GitHub" width="100" height="75"> <img src="picture/airplane3.png" alt="Airplane 3" width="100" height="75">
+  <img src="Data/PrimitiveEra/minions.png" alt="GitHub" width="104" height="32">
 - Threat: là quái vật Blue Fish (con quái vật màu xanh dương) có level là 10.
   
-    <img src="picture/plane_fly1.png " alt="GitHub" width="100" height="75"> <img src="picture/flappybird.png" width="100" height="75">
+  <img src="Data/PrimitiveEra/blueFish.png" alt="GitHub" width="119" height="116">
 - ThreatRedFish: là quái vật Red Fish (con quái vật màu đỏ, cắn cạp cạp) có level là 5.
   
-    <img src="picture/Threat2.png " alt="GitHub" width="100" height="75"> 
+  <img src="Data/PrimitiveEra/redFish.png" alt="GitHub" width="144" height="68">
 - ThreatBigFish: là quái vật Big Fish (con quái vật to nhất màu nâu) có level là 100.
   
-    <img src="picture/boss.png " alt="GitHub" width="100" height="75">       <img src="picture/boss2.png" width="100" height="75">
+  <img src="Data/PrimitiveEra/bigFish1.png" alt="GitHub" width="425" height="165">
 
 - YEAR, LEVEL, COOLDOWN: là năm, level và thời gian hồi chiêu của Minion. Năm sẽ tăng mỗi 5s bắt đầu với năm 0, level của Minion sẽ tăng 2 level mỗi năm hoặc theo số lượng quái vật mà Minion tiêu diệt được khi đang điều khiển quái vật khác. Thời gian hồi chiêu của Minion là 20s, nếu chiêu chưa hồi xong COOLDOWN sẽ hiện màu đỏ, nếu chiêu hồi xong thì COOLDOWN sẽ hiện màu xanh lá. Vào các năm chia hết cho 10 (10, 20, 30,…) quái vật Minon đang điều khiển sẽ không còn bị Minion điều khiển nữa, hãy cẩn thận điều đó. Số lượng và chất lượng quái vật tăng dần theo mỗi năm, nếu như bạn không đạt level 100 để có thể sử dụng skill lên quái vật to nhất thì việc bạn phá đảo game gần như là không thể. Hãy tính toán để có thể phá đảo game.
 
 - Nếu như Minion bị quái vật khác ăn được, sẽ hiện giao diện Game Over. Ở giao diện Game Over, bạn sẽ có 2 lựa chọn là Play Again hoặc Exit, nhấn Play Again bạn sẽ bắt đầu chơi game lại từ đầu, nhấn Exit bạn sẽ thoát ra khỏi trò chơi.
-  <img src="image(ReadMe)/gameover.png" alt="GitHub" width="200" height="150">
+
+  <img src="Data/image(ReadMe)/gameover.png" alt="GitHub" width="1080" height="756">
 
 - Nếu như Minion thành công sống sót đến năm 100, thì bạn đã phá đảo game, khi ấy sẽ hiện giao diện Game Win. Ở giao diện Game Win, bạn sẽ có 3 lựa chọn là Play Again, Menu, hoặc Exit, nhấn Play Again bạn sẽ bắt đầu chơi game lại từ đầu, nhấn Menu bạn sẽ đến giao diện Menu của game, nhấn Exit bạn sẽ thoát ra khỏi trò chơi.
-<img src="image(ReadMe)/gamewin.png" alt="GitHub" width="200" height="150">
+
+  <img src="Data/image(ReadMe)/gamewin.png" alt="GitHub" width="1080" height="756">
 
 - Ấn TAB để có thể sử dụng skill của Minion, ở giao diện sử dụng skill, giao diện sẽ tối lại và chỉ có nhân vật Minion và quái vật bạn có ý định lựa chọn phát sáng, ấn TAB để lựa chọn quái vật. Nếu bạn quyết định chọn quái vật hãy ấn Enter, bạn sẽ dịch chuyển đến sau của quái vật mình chọn và điều khiển quái vật đó, nếu thay đổi ý định không muốn sử dụng skill nữa, hãy ấn Q để thoát khỏi giao diện skill.
+
+  <img src="Data/image(ReadMe)/skill.png" alt="GitHub" width="1080" height="756">
 
 - Nếu bạn đang điều khiển quái vật, nếu không muốn điều khiển quái vật đó nữa hãy ấn Q, khi ấy quái vật sẽ không còn bị điều khiển bởi bạn nữa, khi ấy thời gian hồi chiêu sẽ được giảm 2s.
 
 - Nếu bạn đang điều khiển quái vật, bạn sẽ không bị những quái vật cùng loại với quái vật bạn đang điều khiển tiêu diệt, ví dụ nếu bạn đang điều khiển Red Fish bạn sẽ không bị những Red Fish khác tiêu diệt nhưng vẫn bị các quái vật khác ăn được. Hãy lợi dụng điều này để có thể sống sót, đôi khi điều khiển được quái vật lớn nhất chưa chắc bạn đã có thể thắng được trò chơi.
+
+  <img src="Data/image(ReadMe)/type.png" alt="GitHub" width="1080" height="756">
 
 **GIẢI THÍCH VỀ CÁC FOLDER**
 
